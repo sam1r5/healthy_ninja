@@ -18,7 +18,7 @@ class Products extends CI_Controller
 	//It will also require the use of three diffrent model functions in the Product model page. 
 	public function load_product_category()
 	{
-		$this->load->model('Product')
+		$this->load->model('Product');
 		if($this->input->post('category') == 'beverage')
 		{
 			//run the model function from product

@@ -9,15 +9,12 @@ Class User extends CI_Model
 		$values = array($post['email'], md5($post['password']));
 		return $this->db->query($query, $values)->row_array();
 	}
-	/*this function will query the database for a matching user ID and return first_name, last_name,
-	email, billing_street, billing_city, billing_state, billing_zip, shipping_street, shipping_city,
-	shipping_state, and shipping_zip*/
+	/*this function will query the database for a matching user ID and return that ID*/
 	public function get_user($id)
 	{
 		$query = "SELECT * FROM users where id = ?";
-		$values = array($post['first_name'], $post['last_name'], $post['email'], $post['billing_street'], $post['billing_city'], $post['billing_state'],
-			$post['billing_zip'], $post['shipping_street'], $post['shipping_city'], $post['shipping_state'], $post['shipping_zip']);
-		return ($query, $values)->row_array();
+		$values = array($id);
+		return $this->db->query($query, $values)->row_array();
 	}
 	/*this function will register a user*/
 	public function add_user($post)
