@@ -12,6 +12,17 @@ class Users extends CI_Controller {
 	{
 		$this->load->view('/registraion');
 	}
+
+	//go to the admin dashboard. Query the database to get all the products form the database. 
+	public function load_admin_dashboard()
+	{
+		$this->load->model('Product');
+		$data['product'] = $this->Product->get_all_products();
+		$this->load->view('admin_dash', $data);
+	}
+
+	//register user. Check forms to make sure the data coming in is good for the database. If it isnt reload the page with errors. 
+	// If the form data passes validation then put the data into the database. 
 	public function register()
 	{
 		$this->load->library("form_validation");
@@ -33,6 +44,8 @@ class Users extends CI_Controller {
 		}			
 	}
 
+	//To login the fiels must contain character. If the username or password is incorrect, an error message shows up to tell them either thier email or password is incorrect.
+	//If the form validation is passed the username and password is checked through the database to see if it is correct. 
 	public function login()
 	{
 		$this->load->library("form_validation");

@@ -37,7 +37,18 @@ class Products extends CI_Controller
 			//set the data to from the model to be transferred to the new page
 			$this->load->view('/categories'/*, $data*/);
 		}
-	} 
+	}
 
+	//Add a new product to the the webpage 
+	public function add_product()
+	{
+		//check to see if the user is an admin 
+		if($this->session->userdata('admin') == 'admin')
+		{
+			$this->load->model("Product");
+			$this->Product->add_product($this->input->post());
+			redirect('/users/load_admin_dashboard');
+		}
+	}
 } 
- ?>
+?>
