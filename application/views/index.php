@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8"/>
 		<title></title>
-		<link rel="stylesheet" type="text/css" href="/assets/stylesheets/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="/assets/stylesheets/index.css">
+		<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="index.css">
 		<meta name="description" content="insert description"/>
 		<script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
 		<script type="text/javascript">
@@ -14,12 +14,15 @@
 		</script>
 	</head>
 	<body>
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-      		<div class="container">
-	        	<div class="navbar-header">
-			        <a class="navbar-brand navbar-right" href="#">Sign In</a>
-	        	</div>
-      		</div>
+		<div class="container">
+			<nav class="navbar navbar-inverse navbar-fixed-top">
+	      		<div class="container">
+		        	<div class="navbar-header">
+				        <a class="navbar-brand navbar-right" href="#">Sign In</a>
+		        	</div>
+	      		</div>
+	      	</nav>
+      	</div>
       		<div class="container">
       			<!-- insert featured item image slider here -->
       		</div>
@@ -35,6 +38,5 @@
       				</div>
       			</nav>
       		</div>
-    	</nav>
 	</body>
 </html>

@@ -1,0 +1,85 @@
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #eee;
+}
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+#pass{
+  width: 49%;
+  display: inline-block;
+}
+#editProfile{
+  width: 49%;
+  display: inline-block;
+}
+#editDescription{
+  width: 80%;
+}
+#editDescription form{
+  max-width: 80%;
+}
+#editDescription textarea{
+  width: 100%;
+  height: 200px;
+}
+#editDescription button{
+  width: 10%;
+  margin-left: 90%;
+}
+#manageUsers h2{
+  display: inline-block;
+}
+#manageUsers button{
+  width: 10%;
+  display: inline-block;
+  margin-left: 60%;
+}
+.adminMenu{
+  padding-left: 10px;
+}
+.messagebox{
+  width: 90%;
+  margin: 0 auto;
+}
+.messagebox textarea{
+  width: 90%;
+  height: 100px;
+  display: block;
+  margin-bottom: 10px;
+}
+.messagebox button{
+  margin-left: 85%;
+}
