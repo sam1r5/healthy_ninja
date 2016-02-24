@@ -3,9 +3,9 @@
 	<head>
 		<meta charset="utf-8"/>
 		<title></title>
-		<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="signin.css">
-		<link rel="stylesheet" type="text/css" href="index.css">
+		<link rel="stylesheet" type="text/css" href="/assets/stylesheets/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/assets/stylesheets/signin.css">
+		<link rel="stylesheet" type="text/css" href="/assets/stylesheets/index.css">
 		<meta name="description" content="insert description"/>
 		<script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
 		<script type="text/javascript">
