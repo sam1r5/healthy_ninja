@@ -14,5 +14,12 @@
 	</head>
 	<body>
 
+	Hello
+
+		<nav class="navbar navbar-inverse navbar-fixed-bottom">
+			<div class="navbar-bottom">
+				<a id="about" class="navbar-brand navbar-bottom" href="/users/load_about_us">About Us</a>
+				<a class="navbar-brand navbar-bottom" href="#">Contact Us</a>
+				<p class="navbar-brand navbar-bottom">&copy; 2016 HealthyNinja</p>
 	</body>
 </html>
