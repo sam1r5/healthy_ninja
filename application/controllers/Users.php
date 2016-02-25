@@ -26,10 +26,11 @@ class Users extends CI_Controller {
 	public function register()
 	{
 		$this->load->library("form_validation");
-		$this->form_validation->set_rules("name", "Name", 'trim|required');
+		$this->form_validation->set_rules("first_name", "Name", 'trim|required');
+		$this->form_validation->set_rules("last_name", "Name", 'trim|required');
 		$this->form_validation->set_rules("email", "Email", 'trim|required|is_unique[users.email]');
-		$this->form_validation->set_rules("password", "Password", 'trim|required|min_length[8]|matches[confirm_password]');
-		$this->form_validation->set_rules("confirm_password", "Confirm Password", 'trim|required');
+		$this->form_validation->set_rules("password", "Password", 'trim|required|min_length[8]|matches[confirm]');
+		$this->form_validation->set_rules("confirm", "Confirm Password", 'trim|required');
 		if($this->form_validation->run() == FALSE)
 		{
 			$this->session->set_flashdata('errors_register', validation_errors());
@@ -61,7 +62,7 @@ class Users extends CI_Controller {
 		{
 			$this->load->model('User');
 			$post = $this->input->post();
-			if($this->User->login_check($post))
+			if($this->User->login_verification($post))
 			{
 				$data = $this->User->login_verification($post);
 				$this->session->set_userdata('user', $data);

@@ -27,8 +27,8 @@
 		<div class="container">
           	<form class="form-signin" action="/Users/login" method="post">
             <h2 class="form-signin-heading">Login</h2>
-            <input type="text" name="login_username" class="form-control" placeholder="Email" required autofocus>
-            <input type="password" name="login_password" class="form-control" placeholder="Password" required>
+            <input type="text" name="email" class="form-control" placeholder="Email" required autofocus>
+            <input type="password" name="password" class="form-control" placeholder="Password" required>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
           </form>
     	</div>
