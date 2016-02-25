@@ -5,5 +5,21 @@
 	float: right;
 }
 #about {
-	padding-left: 40%;
+	padding-left: 44%;
+}
+.pictures {
+    width: 33.22%;
+    height: 300px;
+	display: inline-block;
+	border: 2px solid black;
+}
+
+.images {
+	width: 100%;
+    height: 300px;
+}
+.banner{
+	width: 100%;
+	height: 730px;
+	border: 2px solid black;
 }

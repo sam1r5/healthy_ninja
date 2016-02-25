@@ -23,20 +23,16 @@
 	      		</div>
 	      	</nav>
       	</div>
-      		<div class="container">
-      			<!-- insert featured item image slider here -->
-      		</div>
-      		<div class="container">
-      			<!-- insert three category divs here -->
-      		</div>
-      		<div class="container">
+      	<div class="banner"></div>
+      	<div class="pictures"><a href="/products/load_product_beverage"><img class="images" src="/assets/images/beverages.jpg"></a></div>
+		<div class="pictures"><a href="/products/load_product_food"><img class="images" src="/assets/images/health_bar.jpg"></a></div>
+      	<div class="pictures"><a href="/products/load_product_supplement"><img class="images" src="/assets/images/supplements.jpg"></a></div>
       			<nav class="navbar navbar-inverse navbar-fixed-bottom">
       				<div class="navbar-bottom">
       					<a id="about" class="navbar-brand navbar-bottom" href="#">About Us</a>
       					<a class="navbar-brand navbar-bottom" href="#">Contact Us</a>
       					<p class="navbar-brand navbar-bottom">&copy; 2016 HealthyNinja</p>
-      				</div>
-      			</nav>
       		</div>
+      	</nav>
 	</body>
 </html>

@@ -11,32 +11,35 @@ class Products extends CI_Controller
 			$data['user_information'] = $this->User->get_user($this->session->userdata());
 			$this->load->view('/index', $data);
 		}
-		$this->load->view('/index');
 	}
 
 	//this will load the category page with the correct data using post data. Thus a form must be wrapped around the link with a hidden input type.
 	//It will also require the use of three diffrent model functions in the Product model page. 
-	public function load_product_category()
+	public function load_product_beverage()
 	{
+		die('beverage');
 		$this->load->model('Product');
-		if($this->input->post('category') == 'beverage')
-		{
+		//run the model function from product
+		//set the data to from the model to be transferred to the new page
+		$this->load->view('/categories'/*, $data*/);
+	}
+
+	public function load_product_food()
+	{
+				die('food');
+		$this->load->model('Product');
+		//run the model function from product
+		//set the data to from the model to be transferred to the new page
+		$this->load->view('/categories'/*, $data*/);
+	}
+
+	public function load_product_supplement()
+	{
+				die('supplement');
+		$this->load->model('Product');
 			//run the model function from product
 			//set the data to from the model to be transferred to the new page
-			$this->load->view('/categories'/*, $data*/);
-		}
-		if($this->input->post('category') == 'food')
-		{
-			//run the model function from product
-			//set the data to from the model to be transferred to the new page
-			$this->load->view('/categories'/*, $data*/);
-		}
-		if($this->input->post('category') == 'supplement')
-		{
-			//run the model function from product
-			//set the data to from the model to be transferred to the new page
-			$this->load->view('/categories'/*, $data*/);
-		}
+		$this->load->view('/categories'/*, $data*/);
 	} 
 
 } 
