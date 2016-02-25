@@ -19,8 +19,8 @@
 			<nav class="navbar navbar-inverse navbar-fixed-top">
 	      		<div class="container">
 		        	<div class="navbar-header">
-				        <a class="navbar-brand navbar-right" href="#">Home</a>
-				        <a class="navbar-brand navbar-right" href="#">Sign Out</a>
+				        <a class="navbar-brand navbar-right" href="/products/index">Home</a>
+				        <a class="navbar-brand navbar-right" href="/users/logout">Sign Out</a>
 		        	</div>
 	      		</div>
 	      	</nav>
