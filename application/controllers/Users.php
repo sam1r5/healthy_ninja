@@ -5,7 +5,6 @@ class Users extends CI_Controller {
 
 	public function load_login()
 	{
-		$this->load->model('User');
 		$this->load->view('/login');
 	}
 
@@ -25,6 +24,11 @@ class Users extends CI_Controller {
 	public function load_about_us()
 	{
 		$this->load->view('/about_us');
+	}
+
+	public function load_categories()
+	{
+		$this->load->view('/categories');
 	}
 
 	//register user. Check forms to make sure the data coming in is good for the database. If it isnt reload the page with errors. 
@@ -77,8 +81,9 @@ class Users extends CI_Controller {
 			if($this->User->login_verification($post))
 			{
 				$data = $this->User->login_verification($post);
-				$this->session->set_userdata('user', $data);
-				redirect('/users/load_login');
+				$this->session->set_userdata('id', $data['id']);
+				$this->session->set_userdata('name', $data['first_name']);
+				redirect('/users/load_categories');
 			}
 			else
 			{
