@@ -98,7 +98,6 @@ class Users extends CI_Controller {
 		$this->session->sess_destroy();
 		redirect('/Products/index');
 	}
-
 	public function contactvalidate()
 	{
 		//var_dump($this->input->post()); die();
@@ -151,24 +150,4 @@ class Users extends CI_Controller {
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+?>
