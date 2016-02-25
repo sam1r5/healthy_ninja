@@ -10,6 +10,7 @@ class Users extends CI_Controller {
 
 	public function load_registration()
 	{
+		$this->load->library("form_validation");
 		$this->load->view('/registration');
 	}
 
@@ -33,8 +34,9 @@ class Users extends CI_Controller {
 		$this->form_validation->set_rules("confirm", "Confirm Password", 'trim|required');
 		if($this->form_validation->run() == FALSE)
 		{
-			$this->session->set_flashdata('errors_register', validation_errors());
-			redirect('/users/load_registration');
+			// $this->session->set_flashdata('errors_register', validation_errors());
+			// redirect('/users/load_registration');
+			$this->load->view('/registration', validation_errors());
 		}
 		else
 		{

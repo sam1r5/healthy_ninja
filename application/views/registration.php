@@ -24,6 +24,7 @@
 	      		</div>
 	      	</nav>
      	</div>
+     	<?php echo form_error('password'); ?>
 		<div class="container">
 	      	<form class="form-signin" action="/Users/register" method="post">
 		        <h2 class="form-signin-heading">Register</h2>
