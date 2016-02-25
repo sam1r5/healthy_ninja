@@ -54,7 +54,7 @@ class Products extends CI_Controller
 	// Function below is taking get info from the link the user clicks on the category view. We pass that to the models to get the product info and reviews.
 	public function load_product_page($prod_id)
 	{
-		$this->load->model->('Product');
+		$this->load->model('Product');
 		$product_info['product_info'] = $this->Product->get_product($prod_id);
 		$this->load->model('Review');
 		$product_info['reviews'] = $this->Review->get_reviews($prod_id);
