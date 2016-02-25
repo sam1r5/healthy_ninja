@@ -14,6 +14,23 @@
 		</script>
 	</head>
 	<body>
+<?php   if($this->session->userdata('id'))
+		{ ?>
+		<div class="container">
+			<nav class="navbar navbar-inverse navbar-fixed-top">
+	      		<div class="container">
+		        	<div class="navbar-header">
+				        <a class="navbar-brand navbar-right" href="/users/load_login">Cart</a>
+				        <a class="navbar-brand navbar-right" href="/users/logout">Sign Out</a>
+				        <a class="navbar-brand navbar-right" href="/users/load_login">My Account</a>
+				        <a class="navbar-brand navbar-right" href="/users/load_login">Home</a>
+		        	</div>
+	      		</div>
+	      	</nav>
+      	</div>
+<?php	}?>
+<?php 	if(!$this->session->userdata('id'))
+		{ ?>
 		<div class="container">
 			<nav class="navbar navbar-inverse navbar-fixed-top">
 	      		<div class="container">
@@ -23,7 +40,8 @@
 	      		</div>
 	      	</nav>
       	</div>
-      	<div class="banner"></div>
+<?php  	} ?>
+		<div class="banner"></div>
       	<div class="pictures"><a href="/products/load_product_beverage"><img class="images" src="/assets/images/beverages.jpg"></a></div>
 		<div class="pictures"><a href="/products/load_product_food"><img class="images" src="/assets/images/health_bar.jpg"></a></div>
       	<div class="pictures"><a href="/products/load_product_supplement"><img class="images" src="/assets/images/supplements.jpg"></a></div>

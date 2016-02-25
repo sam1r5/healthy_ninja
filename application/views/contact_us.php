@@ -15,15 +15,33 @@
 		</script>
 	</head>
 	<body>
+<?php   if($this->session->userdata('id'))
+		{ ?>
 		<div class="container">
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-      		<div class="container">
-	        	<div class="navbar-header">
-			        <a class="navbar-brand navbar-right" href="/users/load_login">Sign In</a>
-	        	</div>
-      		</div>
-      	</nav>
-  	</div>
+			<nav class="navbar navbar-inverse navbar-fixed-top">
+	      		<div class="container">
+		        	<div class="navbar-header">
+				        <a class="navbar-brand navbar-right" href="/users/load_login">Cart</a>
+				        <a class="navbar-brand navbar-right" href="/users/logout">Sign Out</a>
+				        <a class="navbar-brand navbar-right" href="/users/load_login">My Account</a>
+				        <a class="navbar-brand navbar-right" href="/users/load_login">Home</a>
+		        	</div>
+	      		</div>
+	      	</nav>
+      	</div>
+<?php	}?>
+<?php 	if(!$this->session->userdata('id'))
+		{ ?>
+		<div class="container">
+			<nav class="navbar navbar-inverse navbar-fixed-top">
+	      		<div class="container">
+		        	<div class="navbar-header">
+				        <a class="navbar-brand navbar-right" href="/users/load_login">Sign In</a>
+		        	</div>
+	      		</div>
+	      	</nav>
+      	</div>
+<?php  	} ?>
   	<div class="location">
   		<h2 class="form-signin-heading" class="center">Healthy Ninja Location</h2>
 		<iframe

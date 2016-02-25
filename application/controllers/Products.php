@@ -7,9 +7,7 @@ class Products extends CI_Controller
 		// If the user is signed in set the session data to information that can be sent to the front page
 		if($this->session->userdata())
 		{
-			$this->load->model("User");
-			$data['user_information'] = $this->User->get_user($this->session->userdata());
-			$this->load->view('/index', $data);
+			$this->load->view('/index');
 		}
 	}
 

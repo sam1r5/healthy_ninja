@@ -14,7 +14,9 @@
 		</script>
 	</head>
 	<body>
-	<div class="container">
+<?php   if($this->session->userdata('id'))
+		{ ?>
+		<div class="container">
 			<nav class="navbar navbar-inverse navbar-fixed-top">
 	      		<div class="container">
 		        	<div class="navbar-header">
@@ -26,7 +28,20 @@
 	      		</div>
 	      	</nav>
       	</div>
-	<h1>Welcome, <?php echo $this->session->userdata('name');?></h1>
+<?php	}?>
+<?php 	if(!$this->session->userdata('id'))
+		{ ?>
+		<div class="container">
+			<nav class="navbar navbar-inverse navbar-fixed-top">
+	      		<div class="container">
+		        	<div class="navbar-header">
+				        <a class="navbar-brand navbar-right" href="/users/load_login">Sign In</a>
+		        	</div>
+	      		</div>
+	      	</nav>
+      	</div>
+<?php  	} ?>
+	<h1>Welcome, <?php echo $this->session->userdata('name');?>!</h1>
 
 		<nav class="navbar navbar-inverse navbar-fixed-bottom">
 			<div class="navbar-bottom">

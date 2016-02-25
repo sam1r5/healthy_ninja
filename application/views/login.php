@@ -15,15 +15,33 @@
 		</script>
 	</head>
 	<body>
+<?php   if($this->session->userdata('id'))
+		{ ?>
 		<div class="container">
 			<nav class="navbar navbar-inverse navbar-fixed-top">
 	      		<div class="container">
 		        	<div class="navbar-header">
-				        <a class="navbar-brand navbar-right" href="/products/index">Home</a>
+				        <a class="navbar-brand navbar-right" href="/users/load_login">Cart</a>
+				        <a class="navbar-brand navbar-right" href="/users/logout">Sign Out</a>
+				        <a class="navbar-brand navbar-right" href="/users/load_login">My Account</a>
+				        <a class="navbar-brand navbar-right" href="/users/load_login">Home</a>
 		        	</div>
 	      		</div>
 	      	</nav>
-     	</div>
+      	</div>
+<?php	}?>
+<?php 	if(!$this->session->userdata('id'))
+		{ ?>
+		<div class="container">
+			<nav class="navbar navbar-inverse navbar-fixed-top">
+	      		<div class="container">
+		        	<div class="navbar-header">
+				        <a class="navbar-brand navbar-right" href="/users/load_login">Sign In</a>
+		        	</div>
+	      		</div>
+	      	</nav>
+      	</div>
+<?php  	} ?>
 		<div class="container">
           	<form class="form-signin" action="/Users/login" method="post">
 <?php   if($this->session->flashdata("errors_login"))

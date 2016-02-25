@@ -84,7 +84,7 @@ class Users extends CI_Controller {
 
 				$this->session->set_userdata('id', $data['id']);
 				$this->session->set_userdata('name', $data['first_name']);
-				redirect('/users/load_categories');
+				redirect('/products/index');
 			}
 			else
 			{
