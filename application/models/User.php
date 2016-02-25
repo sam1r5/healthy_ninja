@@ -12,7 +12,7 @@ Class User extends CI_Model
 	/*this function will query the database for a matching user ID and return that ID*/
 	public function get_user($id)
 	{
-		$query = "SELECT * FROM users where id = ?";
+		$query = "SELECT * FROM users WHERE id = ?";
 		$values = array($id);
 		return $this->db->query($query, $values)->row_array();
 	}
@@ -20,11 +20,9 @@ Class User extends CI_Model
 	public function add_user($post)
 	{
 		$query = "INSERT INTO users (first_name, last_name, email, password, billing_street, 
-			billing_city, billing_state, billing_zip, shipping_street, shipping_city, shipping_state, 
-			shipping_zip, admin_status, last_login, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,NOW(),NOW(),NOW())";
-		$values = array($post['first_name'], $post['last_name'], $post['email'], md5($post['password']), $post['billing_state'], $post['billing_city'],
-			$post['billing_state'], $post['billing_zip'], $post['billing_state'], $post['billing_city'],
-			$post['billing_state'], $post['billing_zip'], 'user');
+			billing_city, billing_state, billing_zip, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?,NOW(),NOW())";
+		$values = array($post['first_name'], $post['last_name'], $post['email'], md5($post['password']), $post['billing_street'], $post['billing_city'],
+			$post['billing_state'], $post['billing_zip']);
 		$this->db->query($query, $values);
 	}
 	/*this function will delete the user*/

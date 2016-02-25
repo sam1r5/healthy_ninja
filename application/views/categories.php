@@ -13,6 +13,9 @@
 		</script>
 	</head>
 	<body>
+
+	Hello
+
 		<nav class="navbar navbar-inverse navbar-fixed-bottom">
 			<div class="navbar-bottom">
 				<a id="about" class="navbar-brand navbar-bottom" href="/users/load_about_us">About Us</a>
