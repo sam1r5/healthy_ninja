@@ -10,6 +10,7 @@ class Users extends CI_Controller {
 
 	public function load_registration()
 	{
+		$this->load->library("form_validation");
 		$this->load->view('/registration');
 	}
 
@@ -26,8 +27,8 @@ class Users extends CI_Controller {
 	public function register()
 	{
 		$this->load->library("form_validation");
-		$this->form_validation->set_rules("first_name", "Name", 'trim|required');
-		$this->form_validation->set_rules("last_name", "Name", 'trim|required');
+		$this->form_validation->set_rules("first_name", "Name", 'trim|required|min_length[2]');
+		$this->form_validation->set_rules("last_name", "Name", 'trim|required|min_length[2]');
 		$this->form_validation->set_rules("email", "Email", 'trim|required|is_unique[users.email]');
 		$this->form_validation->set_rules("password", "Password", 'trim|required|min_length[8]|matches[confirm]');
 		$this->form_validation->set_rules("confirm", "Confirm Password", 'trim|required');
@@ -38,9 +39,9 @@ class Users extends CI_Controller {
 
 		if($this->form_validation->run() == FALSE)
 		{
-/*			$data = form_error('password'); die('here');
-			$this->session->set_flashdata('errors_register', validation_errors());*/
-			$this->load->view('/users/load_registration', validation_errors());
+			// $this->session->set_flashdata('errors_register', validation_errors());
+			// redirect('/users/load_registration');
+			$this->load->view('/registration', validation_errors());
 		}
 		else
 		{
