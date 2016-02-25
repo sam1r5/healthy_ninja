@@ -21,6 +21,10 @@ class Users extends CI_Controller {
 		$data['product'] = $this->Product->get_all_products();
 		$this->load->view('admin_dash', $data);
 	}
+	public function load_about_us()
+	{
+		$this->load->view('/about_us');
+	}
 
 	//register user. Check forms to make sure the data coming in is good for the database. If it isnt reload the page with errors. 
 	// If the form data passes validation then put the data into the database. 
