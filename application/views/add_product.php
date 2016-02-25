@@ -19,43 +19,25 @@
 			<nav class="navbar navbar-inverse navbar-fixed-top">
 	      		<div class="container">
 		        	<div class="navbar-header">
-				        <a class="navbar-brand navbar-right" href="#">Home</a>
-				        <a class="navbar-brand navbar-right" href="#">Sign Out</a>
+				        <a class="navbar-brand navbar-right" href="#">Sign In</a>
 		        	</div>
 	      		</div>
 	      	</nav>
      	</div>
-     	<div id="cat_selector">
-     		<label>Select Products to View</label>
-     		<form name="product_viewer" action="/Products/view_selector" method="post">
-     			<select name="product_selector">
-     				<option value="all">All Products</option>
-     				<option value="beverages">Beverages</option>
-     				<option value="supplements">Supplements</option>
-     				<option value="bars">Bars</option>
-     			</select>
-     			<input type="submit" name="submit" value="Submit">
-     		</form>
-     	</div>
 		<div class="container">
-          	<table class="table">
-		        <thead class="thead-inverse">
-		          <tr>
-		            <th>Item Name</th>
-		            <th>Price</th>
-		            <th>Description</th>
-		            <th>Action</th>
-		          </tr>
-		        </thead>
-		        <tbody>
-		          <tr>
-		            <td>NAME</td>
-		            <td>PRICE</td>
-		            <td>DESCRIPTION</td>
-		            <td>LINK TO EDIT PRODUCT PAGE</td>
-		          </tr>
-		        </tbody>
-	      	</table>
+          	<form id="add_product" class="form-signin" action="/Product/add_new" method="post">
+            <h2 class="form-signin-heading">Add New Product</h2>
+            <label>Select Category of Product to Add</label>
+            <select class="form-control" name="category">
+            	<option value="beverages">Beverages</option>
+            	<option value="supplements">Supplements</option>
+            	<option value="bars">Bars</option>
+            </select>
+            <input type="text" name="product_name" class="form-control" placeholder="Product Name" required autofocus>
+            <input type="text" name="product_price" class="form-control" placeholder="Price (Numbers Only)" required>
+            <textarea name="product_description" class="form-control" placeholder="Product Description" required></textarea>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Add Product</button>
+          </form>
     	</div>
     	<div class="container">
       		<nav class="navbar navbar-inverse navbar-fixed-bottom">

@@ -23,3 +23,17 @@
 	height: 730px;
 	border: 2px solid black;
 }
+#add_product input {
+	margin-top: 5px;
+}
+#add_product textarea {
+	margin-top: 5px;
+}
+#add_product button {
+	margin-top: 5px;
+}
+#cat_selector {
+	margin-top: 30px;
+	margin-bottom: 10px;
+	text-align: center;
+}
