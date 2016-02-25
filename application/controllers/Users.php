@@ -21,17 +21,26 @@ class Users extends CI_Controller {
 		$data['product'] = $this->Product->get_all_products();
 		$this->load->view('admin_dash', $data);
 	}
+	public function load_about_us()
+	{
+		$this->load->view('/about_us');
+	}
 
 	//register user. Check forms to make sure the data coming in is good for the database. If it isnt reload the page with errors. 
 	// If the form data passes validation then put the data into the database. 
 	public function register()
 	{
 		$this->load->library("form_validation");
-		$this->form_validation->set_rules("first_name", "Name", 'trim|required');
-		$this->form_validation->set_rules("last_name", "Name", 'trim|required');
+		$this->form_validation->set_rules("first_name", "Name", 'trim|required|min_length[2]');
+		$this->form_validation->set_rules("last_name", "Name", 'trim|required|min_length[2]');
 		$this->form_validation->set_rules("email", "Email", 'trim|required|is_unique[users.email]');
 		$this->form_validation->set_rules("password", "Password", 'trim|required|min_length[8]|matches[confirm]');
 		$this->form_validation->set_rules("confirm", "Confirm Password", 'trim|required');
+		$this->form_validation->set_rules("billing_street", "Street Address", 'trim|required');
+		$this->form_validation->set_rules("billing_city", "City", 'trim|required');
+		$this->form_validation->set_rules("billing_state", "State", 'trim|required');
+		$this->form_validation->set_rules("billing_zip", "Zip Code", 'trim|required');
+
 		if($this->form_validation->run() == FALSE)
 		{
 			// $this->session->set_flashdata('errors_register', validation_errors());
