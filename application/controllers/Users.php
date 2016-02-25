@@ -31,10 +31,16 @@ class Users extends CI_Controller {
 		$this->form_validation->set_rules("email", "Email", 'trim|required|is_unique[users.email]');
 		$this->form_validation->set_rules("password", "Password", 'trim|required|min_length[8]|matches[confirm]');
 		$this->form_validation->set_rules("confirm", "Confirm Password", 'trim|required');
+		$this->form_validation->set_rules("billing_street", "Street Address", 'trim|required');
+		$this->form_validation->set_rules("billing_city", "City", 'trim|required');
+		$this->form_validation->set_rules("billing_state", "State", 'trim|required');
+		$this->form_validation->set_rules("billing_zip", "Zip Code", 'trim|required');
+
 		if($this->form_validation->run() == FALSE)
 		{
-			$this->session->set_flashdata('errors_register', validation_errors());
-			redirect('/users/load_registration');
+/*			$data = form_error('password'); die('here');
+			$this->session->set_flashdata('errors_register', validation_errors());*/
+			$this->load->view('/users/load_registration', validation_errors());
 		}
 		else
 		{

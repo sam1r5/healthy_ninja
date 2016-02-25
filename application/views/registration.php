@@ -24,15 +24,17 @@
 	      		</div>
 	      	</nav>
      	</div>
+
 		<div class="container">
 	      	<form class="form-signin" action="/Users/register" method="post">
 		        <h2 class="form-signin-heading">Register</h2>
-		        <label>First Name:</label>
+                <label>First Name:</label>
 		        <input type="text" name="first_name" class="form-control" placeholder="First Name" required>
+		        <?php echo form_error('first_name');?>
 		        <label>Last Name:</label>
 		        <input type="text" name="last_name" class="form-control" placeholder="Last Name" required>
 		        <label>Email:</label>
-		        <input type="email" name="email" class="form-control" placeholder="User Name" required>
+		        <input type="email" name="email" class="form-control" placeholder="Email" required>
 		        <label>Password:</label>
 		        <input type="password" name="password" class="form-control" placeholder="Password" required>
 		        <label>Confirm Password:</label>
