@@ -10,7 +10,7 @@ class Users extends CI_Controller {
 
 	public function load_registration()
 	{
-		$this->load->view('/registraion');
+		$this->load->view('/registration');
 	}
 
 	//go to the admin dashboard. Query the database to get all the products form the database. 
