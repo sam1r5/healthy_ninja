@@ -84,7 +84,7 @@ class Users extends CI_Controller {
 
 				$this->session->set_userdata('id', $data['id']);
 				$this->session->set_userdata('name', $data['first_name']);
-				redirect('/products/index');
+				redirect('/');
 			}
 			else
 			{
@@ -98,7 +98,6 @@ class Users extends CI_Controller {
 		$this->session->sess_destroy();
 		redirect('/Products/index');
 	}
-
 	public function contactvalidate()
 	{
 		//var_dump($this->input->post()); die();
@@ -106,6 +105,7 @@ class Users extends CI_Controller {
 		{
 			$this->load->library('form_validation');
 			$this->form_validation->set_rules('name', 'Name', 'trim|required');
+			$this->form_validation->set_rules("email", "Email", 'trim|required');
 		}
 		
 		if($this->form_validation->run() == FALSE)
@@ -136,7 +136,7 @@ class Users extends CI_Controller {
 		$this->email->set_newline("\r\n");
 		$this->email->from("healthyninja16@gmail.com", $content['name']);
 		$this->email->to('ssachdev13@gmail.com');
-		$this->email->subject("comment from customer form healthy ninja website");
+		$this->email->subject("comment from " .$content['email']);
 		$this->email->message($content['information']);
 		if($this->email->send())
 		{
@@ -150,24 +150,4 @@ class Users extends CI_Controller {
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+?>

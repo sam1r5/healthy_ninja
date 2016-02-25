@@ -6,7 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<meta name="description" content="insert description"/>
 		<link rel="stylesheet" type="text/css" href="/assets/stylesheets/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="/assets/stylesheets/about_us.css">
+		<link rel="stylesheet" type="text/css" href="/assets/stylesheets/contact_us.css">
 		<script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
@@ -52,13 +52,21 @@
 		&q=175EOliveAve,Burbank,CA" allowfullscreen>
 		</iframe>
 	</div>
-	<div class="location">
-		<form method='post' action='/users/contactvalidate'>
-			<textarea placeholder="Email us" name='information'>
-				
-			</textarea>
-			<input type='text' name='name'>
-			<button type="submit" name='action' value="submit" type="submit">Contact Us</button>
+	<div class="container" class="input-form">
+		<h2 class="form-signin-heading" class="center">Email Us</h2>
+		<form method='post' action='/users/contactvalidate' class="form-horizontal" >
+		<div class="form-group">
+			<label class="form-control" class="col-sm-2 control-label">Name</label>
+				<input type='text' name='name' class="form-control">
+			<label class="form-control" class="col-sm-2 control-label">Email</label>
+				<input type='email' name='email' class="form-control">
+			<label class="form-control" class="col-sm-2 control-label">Message</label>
+				<textarea placeholder="Email us" name='information' class="form-control">
+					
+				</textarea>
+			
+			<button class="btn btn-lg btn-primary btn-block" type="submit" name='action' value="submit" type="submit">Contact Us</button>
+		</div>
 		</form>
 	</div>
 	</body>
