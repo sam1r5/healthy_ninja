@@ -50,8 +50,8 @@
 		        <input type="text" name="billing_city" class="form-control" placeholder="City" required>
 				<span class='red_text'><?php echo form_error('confirm');?></span>  	
 		        <label>State:</label>
-				<select class="form-control" name="billing_state">
-					<option selected disabled hidden value=''>Select State</option>
+				<select class="form-control" name="billing_state" required>
+					<option class="grey" selected disabled hidden value=''></option>
 					<option value="AL">Alabama</option>
 					<option value="AK">Alaska</option>
 					<option value="AZ">Arizona</option>

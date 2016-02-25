@@ -26,6 +26,7 @@ class Users extends CI_Controller {
 	// If the form data passes validation then put the data into the database. 
 	public function register()
 	{
+		var_dump($this->input->post()); die('here');
 		$this->load->library("form_validation");
 		$this->form_validation->set_rules("first_name", "Name", 'trim|required|min_length[2]');
 		$this->form_validation->set_rules("last_name", "Name", 'trim|required|min_length[2]');
