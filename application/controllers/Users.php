@@ -21,9 +21,9 @@ class Users extends CI_Controller {
 		$data['product'] = $this->Product->get_all_products();
 		$this->load->view('admin_dash', $data);
 	}
-	public function load_about_us()
+	public function load_contact_us()
 	{
-		$this->load->view('/about_us');
+		$this->load->view('/contact_us');
 	}
 
 	public function load_categories()
@@ -81,6 +81,7 @@ class Users extends CI_Controller {
 			if($this->User->login_verification($post))
 			{
 				$data = $this->User->login_verification($post);
+
 				$this->session->set_userdata('id', $data['id']);
 				$this->session->set_userdata('name', $data['first_name']);
 				redirect('/users/load_categories');
@@ -97,8 +98,57 @@ class Users extends CI_Controller {
 		$this->session->sess_destroy();
 		redirect('/Products/index');
 	}
-}
 
+	public function contactvalidate()
+	{
+		//var_dump($this->input->post()); die();
+		if($this->input->post('action') == 'submit')
+		{
+			$this->load->library('form_validation');
+			$this->form_validation->set_rules('name', 'Name', 'trim|required');
+		}
+		
+		if($this->form_validation->run() == FALSE)
+		{
+			$this->load->view('/contact_us');
+		}
+		else
+		{
+			$this->sendemail($this->input->post());
+			redirect('users/load_contact_us');
+		}
+
+	}
+
+	private function sendemail($content)
+	{
+		
+		$config= array(
+		    'protocol' => 'smtp',
+		    'smtp_host' => 'ssl://smtp.googlemail.com',
+		    'smtp_port' => 465,
+		    'smtp_user' => 'healthyninja16@gmail.com',
+		    'smtp_pass' => 'chipotle',
+		    'mailtype'  => 'html', 
+		    'charset'   => 'iso-8859-1'
+		);
+		$this->load->library('email', $config);
+		$this->email->set_newline("\r\n");
+		$this->email->from("healthyninja16@gmail.com", $content['name']);
+		$this->email->to('ssachdev13@gmail.com');
+		$this->email->subject("comment from customer form healthy ninja website");
+		$this->email->message($content['information']);
+		if($this->email->send())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+
+	}
+}
 
 
 
