@@ -70,7 +70,7 @@ class Users extends CI_Controller {
 			}
 			else
 			{
-				$this->session->set_flashdata('errors_login', 'email or password is incorrect');
+				$this->session->set_flashdata('errors_login', 'Email or Password is Incorrect');
 				redirect('/users/load_login');
 			}
 		}
