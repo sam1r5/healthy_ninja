@@ -41,6 +41,23 @@ class Products extends CI_Controller
 	//Add a new product to the the webpage 
 	public function add_product()
 	{
+		$this->load->helper(array('form', 'url'));
+		$config['upload_path'] = './assets/images/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['max_size'] = '100';
+		$config['max_width'] = '1024';
+		$config['max_height'] = '768';
+		$this->load->library('upload', $config);
+		if(!$this->upload->do_upload())
+		{
+			$error = array('error' => $this->upload->display_errors());
+			$this->load->view('products/add_product', $error);
+		}
+		else
+		{
+			$data = array('upload_data' => $this->upload->data());
+			$this->load->view('products/add_success', $data);
+		}
 		//check to see if the user is an admin 
 		if($this->session->userdata('admin') == 'admin')
 		{
@@ -57,6 +74,10 @@ class Products extends CI_Controller
 		$this->load->model('Review');
 		$product_info['reviews'] = $this->Review->get_reviews($prod_id);
 		$this->load->view('products/product', $product_info);
+	}
+	public function load_success_page($data)
+	{
+		$this->load->view('products/add_success', $data);
 	}
 } 
 ?>

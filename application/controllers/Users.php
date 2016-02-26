@@ -18,7 +18,7 @@ class Users extends CI_Controller {
 	public function load_admin_dashboard()
 	{
 		$this->load->model('Product');
-		$data['product'] = $this->Product->get_all_products();
+		$data['product'] = $this->Product->get_all_product();
 		$this->load->view('admin_dash', $data);
 	}
 	public function load_contact_us()
