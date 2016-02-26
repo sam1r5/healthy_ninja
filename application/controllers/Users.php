@@ -32,13 +32,24 @@ class Users extends CI_Controller {
 		$this->load->view('/categories');
 	}
 
+	public function load_myaccount()
+	{
+		$this->load->view('myaccount');		
+	}
+
 	public function load_update()
 	{
 		$this->load->model('User');
 		$id = $this->session->userdata('id');
 		$data['user_information'] = $this->User->get_user($id);
 		$this->load->library("form_validation");
-		$this->load->view('myaccount', $data);
+		$this->load->view('update_account', $data);
+	}
+
+	public function load_update_password()
+	{
+		$this->load->library("form_validation");
+		$this->load->view('update_password');
 	}
 
 	//register user. Check forms to make sure the data coming in is good for the database. If it isnt reload the page with errors. 
@@ -67,6 +78,9 @@ class Users extends CI_Controller {
 			$this->load->model('User');
 			$post = $this->input->post();
 			$this->User->add_user($post);
+			$data = $this->User->login_verification($post);
+			$this->session->set_userdata('id', $data['id']);
+			$this->session->set_userdata('name', $data['first_name']);
 			redirect('/');
 		}			
 	}
@@ -91,7 +105,6 @@ class Users extends CI_Controller {
 			if($this->User->login_verification($post))
 			{
 				$data = $this->User->login_verification($post);
-
 				$this->session->set_userdata('id', $data['id']);
 				$this->session->set_userdata('name', $data['first_name']);
 				redirect('/');
@@ -111,7 +124,51 @@ class Users extends CI_Controller {
 
 	public function update() 
 	{
+		$post = $this->input->post();
 		$this->load->model('User');
+		$this->User->update($post);
+		redirect('/users/load_myaccount');
+	}
+
+	public function change_password() 
+	{
+		$post = $this->input->post();
+		$this->load->model('User');
+		$old_password = $this->User->get_password();
+		$this->load->library("form_validation");
+		$this->form_validation->set_rules("old_password", "Old Password", 'trim|required|min_length[8]');
+		$this->form_validation->set_rules("password", "Password", 'trim|required|min_length[8]|matches[confirm]');
+		$this->form_validation->set_rules("confirm", "Confirm Password", 'trim|required|min_length[8]');
+
+		if($this->form_validation->run() == FALSE)
+		{
+			$data = $this->form_validation->error_array();
+/*			var_dump($data); die();*/
+			$this->session->set_flashdata('errors', $data);
+			redirect('/users/load_update_password');
+
+		}
+
+		if($old_password['password'] == md5($post['old_password']))
+		{
+
+			if(md5($post['password']) == md5($post['old_password']))
+			{
+/*				$this->form_validation->set_message("old_password", "Old password must be different from new password");*/
+		$this->form_validation->set_rules("old_password", "Old Password", 'trim|required|min_length[12]');
+				if($this->form_validation->run() !== FALSE)
+				{
+					$this->load->view('/update_password', validation_errors());
+				}
+			}
+			if(md5($post['password']) !== md5($post['old_password']))
+			{
+														die('here!');
+			$this->User->update_password($post);
+			redirect('/users/load_myaccount');
+			die('here@');
+			}
+		}
 	}
 
 	public function contactvalidate()

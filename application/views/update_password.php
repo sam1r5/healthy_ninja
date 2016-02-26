@@ -1,3 +1,14 @@
+<?php  if($this->session->flashdata())
+{
+	foreach($this->session->flashdata() as $flashdata)
+	{
+		var_dump($flashdata['old_password']);
+				var_dump($flashdata['password']);	
+						var_dump($flashdata['confirm']);			
+	}
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -42,42 +53,29 @@
 	      	</nav>
       	</div>
 <?php  	} ?>
-     	<div id="cat_selector">
-     		<label>Select Products to View</label>
-     		<form name="product_viewer" action="/Products/view_selector" method="post">
-     			<select name="product_selector">
-     				<option value="all">All Products</option>
-     				<option value="beverages">Beverages</option>
-     				<option value="supplements">Supplements</option>
-     				<option value="bars">Bars</option>
-     			</select>
-     			<input type="submit" name="submit" value="Submit">
-     		</form>
-     	</div>
 		<div class="container">
-          	<table class="table">
-		        <thead class="thead-inverse">
-		          <tr>
-		            <th>Item Name</th>
-		            <th>Price</th>
-		            <th>Description</th>
-		            <th>Action</th>
-		          </tr>
-		        </thead>
-		        <tbody>
-		          <tr>
-		            <td>NAME</td>
-		            <td>PRICE</td>
-		            <td>DESCRIPTION</td>
-		            <td>LINK TO EDIT PRODUCT PAGE</td>
-		          </tr>
-		        </tbody>
-	      	</table>
+	      	<form class="form-signin" action="/Users/change_password" method="post">
+		        <h2 class="form-signin-heading">Change Password</h2>
+
+                <label>Old Password:</label>
+				<span class='red_text'><?php echo $this->session->flashdata('password');?></span>  		  
+		        <input type="password" name="old_password" class="form-control" placeholder="Old Password" required>
+
+		        <label>New Password:</label>
+				<span class='red_text'><?php echo form_error('password');?></span>        
+		        <input type="password" name="password" class="form-control" placeholder="New Password" required>
+
+		        <label>Confirm New Password:</label>
+		        <span class='red_text'><?php echo form_error('confirm');?></span>  
+		        <input type="password" name="confirm" class="form-control" placeholder="Confirm New Password" required>
+		       
+		        <button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
+	      	</form>
     	</div>
     	<div class="container">
       		<nav class="navbar navbar-inverse navbar-fixed-bottom">
       			<div class="navbar-bottom">
-      				<a id="about" class="navbar-brand navbar-bottom" href="#">About Us</a>
+      				<a id="about" class="navbar-brand navbar-bottom" href="">About Us</a>
       				<a class="navbar-brand navbar-bottom" href="/users/load_contact_us">Contact Us</a>
       				<p class="navbar-brand navbar-bottom">&copy; 2016 HealthyNinja</p>
       			</div>

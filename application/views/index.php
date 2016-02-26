@@ -22,7 +22,7 @@
 		        	<div class="navbar-header">
 				        <a class="navbar-brand navbar-right" href="/carts/cart">Cart</a>
 				        <a class="navbar-brand navbar-right" href="/users/logout">Sign Out</a>
-				        <a class="navbar-brand navbar-right" href="/users/load_update">My Account</a>
+				        <a class="navbar-brand navbar-right" href="/users/load_myaccount">My Account</a>
 				        <a class="navbar-brand navbar-right" href="/products/index">Home</a>
 		        	</div>
 	      		</div>

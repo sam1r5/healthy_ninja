@@ -15,8 +15,6 @@
 		</script>
 	</head>
 	<body>
-<?php   if($this->session->userdata('id'))
-		{ ?>
 		<div class="container">
 			<nav class="navbar navbar-inverse navbar-fixed-top">
 	      		<div class="container">
@@ -29,55 +27,27 @@
 	      		</div>
 	      	</nav>
       	</div>
-<?php	}?>
-<?php 	if(!$this->session->userdata('id'))
-		{ ?>
 		<div class="container">
-			<nav class="navbar navbar-inverse navbar-fixed-top">
-	      		<div class="container">
-		        	<div class="navbar-header">
-				        <a class="navbar-brand navbar-right" href="/users/load_login">Sign In</a>
-		        	</div>
-	      		</div>
-	      	</nav>
-      	</div>
-<?php  	} ?>
-     	<div id="cat_selector">
-     		<label>Select Products to View</label>
-     		<form name="product_viewer" action="/Products/view_selector" method="post">
-     			<select name="product_selector">
-     				<option value="all">All Products</option>
-     				<option value="beverages">Beverages</option>
-     				<option value="supplements">Supplements</option>
-     				<option value="bars">Bars</option>
-     			</select>
-     			<input type="submit" name="submit" value="Submit">
-     		</form>
-     	</div>
-		<div class="container">
-          	<table class="table">
-		        <thead class="thead-inverse">
-		          <tr>
-		            <th>Item Name</th>
-		            <th>Price</th>
-		            <th>Description</th>
-		            <th>Action</th>
-		          </tr>
-		        </thead>
-		        <tbody>
-		          <tr>
-		            <td>NAME</td>
-		            <td>PRICE</td>
-		            <td>DESCRIPTION</td>
-		            <td>LINK TO EDIT PRODUCT PAGE</td>
-		          </tr>
-		        </tbody>
-	      	</table>
+	      	<form class="form-signin" action="/Users/update" method="post">
+		        <h2 class="form-signin-heading">Change Password</h2>
+ 		        <label>Old Password:</label>
+		        <input type="password" name="old_password" class="form-control" placeholder="Old Password" required>
+		        <span class='red_text'><?php echo form_error('password');?></span>
+				<label>New Password:</label>
+		        <input type="password" name="password" class="form-control" placeholder="New Password" required>
+		        <span class='red_text'><?php echo form_error('password');?></span>    
+		        <label>Confirm New Password:</label>
+		        <input type="password" name="confirm" class="form-control" placeholder="Confirm New Password" required>
+		        <span class='red_text'><?php echo form_error('confirm');?></span>
+		        <div class="checkbox">
+		        </div>
+		        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+	      	</form>
     	</div>
     	<div class="container">
       		<nav class="navbar navbar-inverse navbar-fixed-bottom">
       			<div class="navbar-bottom">
-      				<a id="about" class="navbar-brand navbar-bottom" href="#">About Us</a>
+      				<a id="about" class="navbar-brand navbar-bottom" href="">About Us</a>
       				<a class="navbar-brand navbar-bottom" href="/users/load_contact_us">Contact Us</a>
       				<p class="navbar-brand navbar-bottom">&copy; 2016 HealthyNinja</p>
       			</div>
