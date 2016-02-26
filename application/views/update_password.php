@@ -1,12 +1,5 @@
-<?php  if($this->session->flashdata())
-{
-	foreach($this->session->flashdata() as $flashdata)
-	{
-		var_dump($flashdata['old_password']);
-				var_dump($flashdata['password']);	
-						var_dump($flashdata['confirm']);			
-	}
-}
+<?php  
+$errors = $this->session->flashdata('errors');
 
 ?>
 <!DOCTYPE html>
@@ -58,7 +51,7 @@
 		        <h2 class="form-signin-heading">Change Password</h2>
 
                 <label>Old Password:</label>
-				<span class='red_text'><?php echo $this->session->flashdata('password');?></span>  		  
+				<span class='red_text'><?php echo $errors['password'];?></span>  		  
 		        <input type="password" name="old_password" class="form-control" placeholder="Old Password" required>
 
 		        <label>New Password:</label>

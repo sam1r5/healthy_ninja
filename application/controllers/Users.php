@@ -143,7 +143,7 @@ class Users extends CI_Controller {
 		if($this->form_validation->run() == FALSE)
 		{
 			$data = $this->form_validation->error_array();
-/*			var_dump($data); die();*/
+			// var_dump($data); die();
 			$this->session->set_flashdata('errors', $data);
 			redirect('/users/load_update_password');
 
