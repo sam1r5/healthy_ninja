@@ -23,12 +23,22 @@ class Users extends CI_Controller {
 	}
 	public function load_contact_us()
 	{
+		$this->load->library("form_validation");	
 		$this->load->view('/contact_us');
 	}
 
 	public function load_categories()
 	{
 		$this->load->view('/categories');
+	}
+
+	public function load_update()
+	{
+		$this->load->model('User');
+		$id = $this->session->userdata('id');
+		$data['user_information'] = $this->User->get_user($id);
+		$this->load->library("form_validation");
+		$this->load->view('myaccount', $data);
 	}
 
 	//register user. Check forms to make sure the data coming in is good for the database. If it isnt reload the page with errors. 
@@ -98,19 +108,26 @@ class Users extends CI_Controller {
 		$this->session->sess_destroy();
 		redirect('/Products/index');
 	}
+
+	public function update() 
+	{
+		$this->load->model('User');
+	}
+
 	public function contactvalidate()
 	{
-		//var_dump($this->input->post()); die();
+		$this->load->library('form_validation');
+		
 		if($this->input->post('action') == 'submit')
 		{
-			$this->load->library('form_validation');
-			$this->form_validation->set_rules('name', 'Name', 'trim|required');
+			$this->form_validation->set_rules('name', 'Name', 'trim|required|min_length[2]');
 			$this->form_validation->set_rules("email", "Email", 'trim|required');
+			$this->form_validation->set_rules("information", "Message", 'trim|required|min_length[2]');
 		}
 		
 		if($this->form_validation->run() == FALSE)
 		{
-			$this->load->view('/contact_us');
+			$this->load->view('/contact_us', validation_errors());
 		}
 		else
 		{

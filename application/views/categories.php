@@ -20,10 +20,10 @@
 			<nav class="navbar navbar-inverse navbar-fixed-top">
 	      		<div class="container">
 		        	<div class="navbar-header">
-				        <a class="navbar-brand navbar-right" href="/users/load_login">Cart</a>
+				        <a class="navbar-brand navbar-right" href="/carts/cart">Cart</a>
 				        <a class="navbar-brand navbar-right" href="/users/logout">Sign Out</a>
-				        <a class="navbar-brand navbar-right" href="/users/load_login">My Account</a>
-				        <a class="navbar-brand navbar-right" href="/users/load_login">Home</a>
+				        <a class="navbar-brand navbar-right" href="/users/load_update">My Account</a>
+				        <a class="navbar-brand navbar-right" href="/products/index">Home</a>
 		        	</div>
 	      		</div>
 	      	</nav>

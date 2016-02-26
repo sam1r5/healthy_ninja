@@ -7,6 +7,7 @@
 		<meta name="description" content="insert description"/>
 		<link rel="stylesheet" type="text/css" href="/assets/stylesheets/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="/assets/stylesheets/contact_us.css">
+		<link rel="stylesheet" type="text/css" href="/assets/stylesheets/index.css">
 		<script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
@@ -21,10 +22,10 @@
 			<nav class="navbar navbar-inverse navbar-fixed-top">
 	      		<div class="container">
 		        	<div class="navbar-header">
-				        <a class="navbar-brand navbar-right" href="/users/load_login">Cart</a>
+				        <a class="navbar-brand navbar-right" href="/carts/cart">Cart</a>
 				        <a class="navbar-brand navbar-right" href="/users/logout">Sign Out</a>
-				        <a class="navbar-brand navbar-right" href="/users/load_login">My Account</a>
-				        <a class="navbar-brand navbar-right" href="/users/load_login">Home</a>
+				        <a class="navbar-brand navbar-right" href="/users/load_update">My Account</a>
+				        <a class="navbar-brand navbar-right" href="/products/index">Home</a>
 		        	</div>
 	      		</div>
 	      	</nav>
@@ -56,14 +57,14 @@
 		<h2 class="form-signin-heading" class="center">Email Us</h2>
 		<form method='post' action='/users/contactvalidate' class="form-horizontal" >
 		<div class="form-group">
+				<span class='red_text'><?php echo form_error('name');?></span>
 			<label class="form-control" class="col-sm-2 control-label">Name</label>
-				<input type='text' name='name' class="form-control">
+				<input type='text' name='name' class="form-control" required>
 			<label class="form-control" class="col-sm-2 control-label">Email</label>
-				<input type='email' name='email' class="form-control">
+				<span class='red_text'><?php echo form_error('information');?></span>
+				<input type='email' name='email' class="form-control" required>
 			<label class="form-control" class="col-sm-2 control-label">Message</label>
-				<textarea placeholder="Email us" name='information' class="form-control">
-					
-				</textarea>
+				<textarea placeholder="Email us" name='information' class="form-control" required></textarea>
 			
 			<button class="btn btn-lg btn-primary btn-block" type="submit" name='action' value="submit" type="submit">Contact Us</button>
 		</div>
