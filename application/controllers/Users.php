@@ -143,7 +143,7 @@ class Users extends CI_Controller {
 
 		if($email['email'] == $post['email'])
 		{
-			$this->User->update($post['email']);			
+			$this->User->update_email($post['email']);			
 		}		
 		
 		else

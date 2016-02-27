@@ -51,6 +51,16 @@ Class User extends CI_Model
 				$post['billing_city'], $post['billing_state'], $post['billing_zip']);
 		$this->db->query($query, $values);
 	}
+	/*this function will update the user information
+	if old password matches the current password*/
+	public function update_email($post)
+	{
+		$id = $this->session->userdata('id');		
+		$query = "UPDATE users SET email = ?, updated_at = NOW() WHERE id = $id";
+		$values = array($post['email']);
+		$this->db->query($query, $values);
+	}
+
 	/*this function will update password*/
 	public function update_password($post)
 	{
