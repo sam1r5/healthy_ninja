@@ -50,7 +50,7 @@
                 <label>Current Password:</label>
 <?php  			if(isset($errors['current_password']))
 				{ ?>
-				 	<span class='red_text'><?php echo $errors['old_password'];?></span> 
+				 	<span class='red_text'><?php echo $errors['current_password'];?></span> 
 <?php			} ?>	  
 		        <input type="password" name="current_password" class="form-control" placeholder="Current Password" required>
 
