@@ -59,8 +59,9 @@ class Products extends CI_Controller
 		}
 		else
 		{
-			var_dump($this->input->post());
-			die();
+			$this->load->model('Product');
+			$post = $this->input->post();
+			$this->Product->add_product($post);
 			$data = array('upload_data' => $this->upload->data());
 			$this->load->view('products/add_success', $data);
 		}

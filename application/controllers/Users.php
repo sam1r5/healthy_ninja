@@ -151,7 +151,7 @@ class Users extends CI_Controller {
 			$this->form_validation->set_rules("email", "Email", 'trim|required|valid_email|is_unique[users.email]');
 			$this->form_validation->set_message('is_unique', 'The %s "' . $post['email'] . '" is already taken');
 		}
-
+		
 		if($this->form_validation->run() == FALSE)
 		{
 			$data = $this->form_validation->error_array();
