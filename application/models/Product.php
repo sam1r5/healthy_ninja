@@ -18,9 +18,13 @@ Class Product extends CI_Model
 	// The function below gets the product info necessary for the specific product view page.
 	public function get_product($prod_id)
 	{
-		$query = "SELECT products.name as name, category, description 
+		$query = "SELECT products.name as name, category, description, price, id 
 			FROM products
 			WHERE products.id =" . $prod_id;
-			return $this->db->query($query)->result_array();
+			return $this->db->query($query)->row_array();
+	}
+	public function update_product($id)
+	{
+		
 	}
 }

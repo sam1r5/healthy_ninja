@@ -28,9 +28,9 @@ Class User extends CI_Model
 	public function add_user($post)
 	{
 		$query = "INSERT INTO users (first_name, last_name, email, password, billing_street, 
-			billing_city, billing_state, billing_zip, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?,NOW(),NOW())";
+			billing_city, billing_state, billing_zip, admin_status, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?,?,NOW(),NOW())";
 		$values = array($post['first_name'], $post['last_name'], $post['email'], md5($post['password']), $post['billing_street'], $post['billing_city'],
-			$post['billing_state'], $post['billing_zip']);
+			$post['billing_state'], $post['billing_zip'], 0);
 		$this->db->query($query, $values);
 	}
 	/*this function will delete the user*/

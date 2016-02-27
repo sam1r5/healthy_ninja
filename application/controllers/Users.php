@@ -111,6 +111,7 @@ class Users extends CI_Controller {
 				$data = $this->User->login_verification($post);
 				$this->session->set_userdata('id', $data['id']);
 				$this->session->set_userdata('name', $data['first_name']);
+				$this->session->set_userdata('admin_status', $data['admin_status']);
 				redirect('/');
 			}
 			else

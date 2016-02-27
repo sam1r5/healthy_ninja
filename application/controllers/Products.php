@@ -55,7 +55,7 @@ class Products extends CI_Controller
 			$error = array('error' => $this->upload->display_errors());
 			// var_dump($error);
 			// die();
-			$this->load->view('products/add_product', $error);
+			$this->load->view('products/add_new_product', $error);
 		}
 		else
 		{
@@ -63,7 +63,7 @@ class Products extends CI_Controller
 			$post = $this->input->post();
 			$this->Product->add_product($post);
 			$data = array('upload_data' => $this->upload->data());
-			$this->load->view('products/add_success', $data);
+			redirect('/users/load_admin_dashboard');
 		}
 		//check to see if the user is an admin 
 		// if($this->session->userdata('admin') == 'admin')
@@ -89,6 +89,29 @@ class Products extends CI_Controller
 	public function load_add_product()
 	{
 		$this->load->view('/add_product');
+	}
+	public function create_thumbnail()
+	{
+		$this->load->library('image_lib');
+		$config['image_library'] = 'gd2';
+		$config['source_image'] = '/assets/images/' . $image_name;
+		$config['create_thumb'] = TRUE;
+		$config['maintain_ratio'] = TRUE;
+		$config['width'] = 75;
+		$config['height'] = 50;
+		$this->load->library('image_lib', $config);
+		$this->image_lib->resize();
+	}
+	public function load_update()
+	{
+		$this->load->model('Product');
+		$prod_id = $this->input->post('product_id');
+		$data['product_info'] = $this->Product->get_product($prod_id);
+		$this->load->view('/update_product', $data);
+	}
+	public function update_product()
+	{
+		
 	}
 } 
 ?>
