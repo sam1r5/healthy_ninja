@@ -39,15 +39,38 @@ class Products extends CI_Controller
 			//set the data to from the model to be transferred to the new page
 	}
 	//Add a new product to the the webpage 
-	public function add_product()
+	public function add_new_product()
 	{
-		//check to see if the user is an admin 
-		if($this->session->userdata('admin') == 'admin')
+		$name = $this->input->post('product_name');
+		$this->load->helper(array('form', 'url'));
+		$config['upload_path'] = './assets/images/';
+		$config['file_name'] = $name;
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['max_size'] = '100';
+		$config['max_width'] = '1024';
+		$config['max_height'] = '768';
+		$this->load->library('upload', $config);
+		if(!$this->upload->do_upload('product_image'))
 		{
+			$error = array('error' => $this->upload->display_errors());
+			// var_dump($error);
+			// die();
+			$this->load->view('products/add_product', $error);
+		}
+		else
+		{
+			var_dump($this->input->post());
+			die();
+			$data = array('upload_data' => $this->upload->data());
+			$this->load->view('products/add_success', $data);
+		}
+		//check to see if the user is an admin 
+		// if($this->session->userdata('admin') == 'admin')
+		// {
 			$this->load->model("Product");
 			$this->Product->add_product($this->input->post());
 			redirect('/users/load_admin_dashboard');
-		}
+		// }
 	}
 	// Function below is taking get info from the link the user clicks on the category view. We pass that to the models to get the product info and reviews.
 	public function load_product_page($prod_id)
@@ -57,6 +80,14 @@ class Products extends CI_Controller
 		$this->load->model('Review');
 		$product_info['reviews'] = $this->Review->get_reviews($prod_id);
 		$this->load->view('products/product', $product_info);
+	}
+	public function load_success_page($data)
+	{
+		$this->load->view('products/add_success', $data);
+	}
+	public function load_add_product()
+	{
+		$this->load->view('/add_product');
 	}
 } 
 ?>

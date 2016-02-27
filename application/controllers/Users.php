@@ -18,7 +18,7 @@ class Users extends CI_Controller {
 	public function load_admin_dashboard()
 	{
 		$this->load->model('Product');
-		$data['product'] = $this->Product->get_all_products();
+		$data['product'] = $this->Product->get_all_product();
 		$this->load->view('admin_dash', $data);
 	}
 	public function load_contact_us()
@@ -32,23 +32,36 @@ class Users extends CI_Controller {
 		$this->load->view('/categories');
 	}
 
+	public function load_myaccount()
+	{
+		$this->load->view('myaccount');		
+	}
+
 	public function load_update()
 	{
 		$this->load->model('User');
 		$id = $this->session->userdata('id');
 		$data['user_information'] = $this->User->get_user($id);
 		$this->load->library("form_validation");
-		$this->load->view('myaccount', $data);
+		$this->load->view('update_account', $data);
+	}
+
+	public function load_update_password()
+	{
+		$this->load->library("form_validation");
+		$this->load->view('update_password');
 	}
 
 	//register user. Check forms to make sure the data coming in is good for the database. If it isnt reload the page with errors. 
 	// If the form data passes validation then put the data into the database. 
 	public function register()
 	{
+		$post = $this->input->post();
 		$this->load->library("form_validation");
-		$this->form_validation->set_rules("first_name", "Name", 'trim|required|min_length[2]');
-		$this->form_validation->set_rules("last_name", "Name", 'trim|required|min_length[2]');
-		$this->form_validation->set_rules("email", "Email", 'trim|required|is_unique[users.email]');
+		$this->form_validation->set_rules("first_name", "First name", 'trim|required|min_length[2]');
+		$this->form_validation->set_rules("last_name", "Last name", 'trim|required|min_length[2]');
+		$this->form_validation->set_rules("email", "Email", 'trim|required|valid_email|is_unique[users.email]');
+		$this->form_validation->set_message('is_unique', 'The %s "' . $post['email'] . '" is already taken');
 		$this->form_validation->set_rules("password", "Password", 'trim|required|min_length[8]|matches[confirm]');
 		$this->form_validation->set_rules("confirm", "Confirm Password", 'trim|required');
 		$this->form_validation->set_rules("billing_street", "Street Address", 'trim|required');
@@ -58,15 +71,18 @@ class Users extends CI_Controller {
 
 		if($this->form_validation->run() == FALSE)
 		{
-			// $this->session->set_flashdata('errors_register', validation_errors());
-			// redirect('/users/load_registration');
-			$this->load->view('/registration', validation_errors());
+			$data = $this->form_validation->error_array();
+			$this->session->set_flashdata('errors', $data);
+			$this->load->view('/registration');
 		}
 		else
 		{
 			$this->load->model('User');
 			$post = $this->input->post();
 			$this->User->add_user($post);
+			$data = $this->User->login_verification($post);
+			$this->session->set_userdata('id', $data['id']);
+			$this->session->set_userdata('name', $data['first_name']);
 			redirect('/');
 		}			
 	}
@@ -76,29 +92,31 @@ class Users extends CI_Controller {
 	public function login()
 	{
 		$this->load->library("form_validation");
-		$this->form_validation->set_rules("email", "Email", 'trim|required');
-		$this->form_validation->set_rules("password", "Password", 'trim|required');
-		$this->load->library("form_validation");
+		$this->form_validation->set_rules("email", "Email", 'trim|required|valid_email');
+		$this->form_validation->set_rules("password", "Password", 'trim|required|min_length[8]');
+		
 		if($this->form_validation->run() == FALSE)
 		{
-			$this->session->set_flashdata('errors_login', validation_errors());
+			$data = $this->form_validation->error_array();
+			$this->session->set_flashdata('errors', $data);
 			redirect('/users/load_login');
 		}
 		else
 		{
 			$this->load->model('User');
 			$post = $this->input->post();
+
 			if($this->User->login_verification($post))
 			{
 				$data = $this->User->login_verification($post);
-
 				$this->session->set_userdata('id', $data['id']);
 				$this->session->set_userdata('name', $data['first_name']);
 				redirect('/');
 			}
 			else
 			{
-				$this->session->set_flashdata('errors_login', 'Email or Password is Incorrect');
+				$data['errors'] = 'Incorrect email and password combination';
+				$this->session->set_flashdata('errors', $data);
 				redirect('/users/load_login');
 			}
 		}
@@ -112,6 +130,81 @@ class Users extends CI_Controller {
 	public function update() 
 	{
 		$this->load->model('User');
+		$id = $this->session->userdata('id');
+		$email = $this->User->get_email($id);
+		$post = $this->input->post();
+		$this->load->library("form_validation");
+		$this->form_validation->set_rules("first_name", "First name", 'trim|required|min_length[2]');
+		$this->form_validation->set_rules("last_name", "Last name", 'trim|required|min_length[2]');
+		$this->form_validation->set_rules("billing_street", "Street Address", 'trim|required');
+		$this->form_validation->set_rules("billing_city", "City", 'trim|required');
+		$this->form_validation->set_rules("billing_state", "State", 'trim|required');
+		$this->form_validation->set_rules("billing_zip", "Zip Code", 'trim|required');
+
+		if($email['email'] == $post['email'])
+		{
+			$this->User->update($post['email']);			
+		}		
+		
+		else
+		{
+			$this->form_validation->set_rules("email", "Email", 'trim|required|valid_email|is_unique[users.email]');
+			$this->form_validation->set_message('is_unique', 'The %s "' . $post['email'] . '" is already taken');
+		}
+
+		if($this->form_validation->run() == FALSE)
+		{
+			$data = $this->form_validation->error_array();
+			$this->session->set_flashdata('errors', $data);
+			redirect('/users/load_update');
+		}
+		else
+		{
+			$post = $this->input->post();
+			$this->User->update($post);
+			redirect('/users/load_myaccount');
+		}
+	}
+
+	public function change_password() 
+	{
+		$post = $this->input->post();
+		$this->load->model('User');
+		$current_password = $this->User->get_password();
+		$this->load->library("form_validation");
+		$this->form_validation->set_rules("current_password", "Current Password", 'trim|required|min_length[8]');
+		$this->form_validation->set_rules("password", "Password", 'trim|required|min_length[8]|matches[confirm]');
+		$this->form_validation->set_rules("confirm", "Confirm Password", 'trim|required|min_length[8]');
+
+		if($this->form_validation->run() == FALSE)
+		{
+			$data = $this->form_validation->error_array();
+			$this->session->set_flashdata('errors', $data);
+			redirect('/users/load_update_password');
+		}
+
+		if($current_password['password'] == md5($post['current_password']))
+		{
+
+			if(md5($post['password']) == md5($post['current_password']))
+			{
+				$data['errors'] = 'New password and current password must be different';
+				$this->session->set_flashdata('errors', $data);
+				$this->load->view('/update_password');
+			}
+
+			else
+			{
+				$this->User->update_password($post);
+				redirect('/users/load_myaccount');
+			}
+		}
+		else
+		{
+			$data['errors'] = 'Incorrect Current Password';
+			$this->session->set_flashdata('errors', $data);
+			redirect('/users/load_update_password');
+		}
 	}
 
 	public function contactvalidate()

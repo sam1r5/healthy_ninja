@@ -23,7 +23,7 @@
 		        	<div class="navbar-header">
 				        <a class="navbar-brand navbar-right" href="/carts/cart">Cart</a>
 				        <a class="navbar-brand navbar-right" href="/users/logout">Sign Out</a>
-				        <a class="navbar-brand navbar-right" href="/users/load_update">My Account</a>
+				        <a class="navbar-brand navbar-right" href="/users/load_myaccount">My Account</a>
 				        <a class="navbar-brand navbar-right" href="/products/index">Home</a>
 		        	</div>
 	      		</div>
@@ -43,7 +43,7 @@
       	</div>
 <?php  	} ?>
 		<div class="container">
-          	<form id="add_product" class="form-signin" action="/Product/add_new" method="post">
+          	<form class="form-signin" action="/Products/add_new_product" method="post" enctype="multipart/form-data">
             <h2 class="form-signin-heading">Add New Product</h2>
             <label>Select Category of Product to Add</label>
             <select class="form-control" name="category">
@@ -54,6 +54,8 @@
             <input type="text" name="product_name" class="form-control" placeholder="Product Name" required autofocus>
             <input type="text" name="product_price" class="form-control" placeholder="Price (Numbers Only)" required>
             <textarea name="product_description" class="form-control" placeholder="Product Description" required></textarea>
+            <label>Select Product Image to Upload</label>
+            <input type="file" name="product_image" class="form-control" required>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Add Product</button>
           </form>
     	</div>

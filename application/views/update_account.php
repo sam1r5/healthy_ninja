@@ -1,4 +1,4 @@
-<?php  $errors = $this->session->flashdata('errors');?>
+<?php  $errors = $this->session->flashdata('errors'); var_dump($errors);?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -16,64 +16,70 @@
 		</script>
 	</head>
 	<body>
+<?php   if($this->session->userdata('id'))
+		{ ?>
 		<div class="container">
 			<nav class="navbar navbar-inverse navbar-fixed-top">
 	      		<div class="container">
 		        	<div class="navbar-header">
+				        <a class="navbar-brand navbar-right" href="/carts/cart">Cart</a>
+				        <a class="navbar-brand navbar-right" href="/users/logout">Sign Out</a>
+				        <a class="navbar-brand navbar-right" href="/users/load_myaccount">My Account</a>
 				        <a class="navbar-brand navbar-right" href="/products/index">Home</a>
 		        	</div>
 	      		</div>
 	      	</nav>
-     	</div>
+      	</div>
+<?php	}?>
+<?php 	if(!$this->session->userdata('id'))
+		{ ?>
 		<div class="container">
-	      	<form class="form-signin" action="/Users/register" method="post">
-		        <h2 class="form-signin-heading">Register</h2>
+			<nav class="navbar navbar-inverse navbar-fixed-top">
+	      		<div class="container">
+		        	<div class="navbar-header">
+				        <a class="navbar-brand navbar-right" href="/users/load_login">Sign In</a>
+		        	</div>
+	      		</div>
+	      	</nav>
+      	</div>
+<?php  	} ?>
+		<div class="container">
+	      	<form class="form-signin" action="/Users/update" method="post">
+		        <h2 class="form-signin-heading">Update Information</h2>
                 <label>First Name:</label>
 <?php 		if(isset($errors['first_name']))
 			{ ?>
 			 	<span class='red_text'><?php echo $errors['first_name'];?></span> 
-<?php		} ?>    
-		        <input type="text" name="first_name" class="form-control" placeholder="First Name" required>
+<?php		} ?>         
+		        <input type="text" name="first_name" class="form-control" value="<?php echo $user_information['first_name'];?>" required>
 		        <label>Last Name:</label>
 <?php 		if(isset($errors['last_name']))
 			{ ?>
 			 	<span class='red_text'><?php echo $errors['last_name'];?></span> 
-<?php		} ?>    
-		        <input type="text" name="last_name" class="form-control" placeholder="Last Name" required>
+<?php		} ?>   
+		        <input type="text" name="last_name" class="form-control" value="<?php echo $user_information['last_name'];?>" required>
 		        <label>Email:</label>
 <?php 		if(isset($errors['email']))
 			{ ?>
 			 	<span class='red_text'><?php echo $errors['email'];?></span> 
-<?php		} ?>    
-		        <input type="email" name="email" class="form-control" placeholder="Email" required>
-		        <label>Password:</label>
-<?php 		if(isset($errors['password']))
-			{ ?>
-			 	<span class='red_text'><?php echo $errors['password'];?></span> 
-<?php		} ?>    
-		        <input type="password" name="password" class="form-control" placeholder="Password" required>
-		        <label>Confirm Password:</label>
-<?php 		if(isset($errors['confirm']))
-			{ ?>
-			 	<span class='red_text'><?php echo $errors['confirm'];?></span> 
-<?php		} ?> 	    
-		        <input type="password" name="confirm" class="form-control" placeholder="Confirm Password" required>
-		        <h2 class="form-signin-heading">Billing Info</h2>
+<?php		} ?>   
+		        <input type="email" name="email" class="form-control" value="<?php echo $user_information['email'];?>" required>
+		        <h2 class="form-signin-heading">Update Billing Info</h2>
 		        <label>Street Address:</label>
 <?php 		if(isset($errors['billing_street']))
 			{ ?>
 			 	<span class='red_text'><?php echo $errors['billing_street'];?></span> 
-<?php		} ?> 			        
-		        <input type="text" name="billing_street" class="form-control" placeholder="Street Address" required>
+<?php		} ?> 		
+		        <input type="text" name="billing_street" class="form-control" value="<?php echo $user_information['billing_street'];?>" required>
 		        <label>City:</label>
 <?php 		if(isset($errors['billing_city']))
 			{ ?>
 			 	<span class='red_text'><?php echo $errors['billing_city'];?></span> 
-<?php		} ?>  	
-		        <input type="text" name="billing_city" class="form-control" placeholder="City"> 
+<?php		} ?> 	
+		        <input type="text" name="billing_city" class="form-control" value="<?php echo $user_information['billing_city'];?>" required>
 		        <label>State:</label>
 				<select class="form-control" name="billing_state" required>
-					<option class="grey" selected disabled hidden value=''></option>
+					<option selected><?php echo $user_information['billing_state'];?></option>
 					<option value="Alabama">Alabama</option>
 					<option value="Alaska">Alaska</option>
 					<option value="Arizona">Arizona</option>
@@ -130,11 +136,11 @@
 <?php 		if(isset($errors['billing_zip']))
 			{ ?>
 			 	<span class='red_text'><?php echo $errors['billing_zip'];?></span> 
-<?php		} ?>   	
-		        <input type="text" pattern="[0-9]{5}" name="billing_zip" class="form-control" placeholder="Zip Code" oninvalid="setCustomValidity('Please enter a valid 5 digit zip code')">
+<?php		} ?>  
+		        <input type="text" pattern="[0-9]{5}" name="billing_zip" class="form-control" value="<?php echo $user_information['billing_zip'];?>" oninvalid="setCustomValidity('Please enter a valid 5 digit zip code')">
 		        <div class="checkbox">
 		        </div>
-		        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+		        <button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
 	      	</form>
     	</div>
     	<div class="container">

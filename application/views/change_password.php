@@ -1,4 +1,3 @@
-<?php  $errors = $this->session->flashdata('errors');?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -16,8 +15,6 @@
 		</script>
 	</head>
 	<body>
-<?php   if($this->session->userdata('id'))
-		{ ?>
 		<div class="container">
 			<nav class="navbar navbar-inverse navbar-fixed-top">
 	      		<div class="container">
@@ -30,44 +27,27 @@
 	      		</div>
 	      	</nav>
       	</div>
-<?php	}?>
-<?php 	if(!$this->session->userdata('id'))
-		{ ?>
 		<div class="container">
-			<nav class="navbar navbar-inverse navbar-fixed-top">
-	      		<div class="container">
-		        	<div class="navbar-header">
-				        <a class="navbar-brand navbar-right" href="/users/load_login">Sign In</a>
-		        	</div>
-	      		</div>
-	      	</nav>
-      	</div>
-<?php  	} ?>
-		<div class="container">
-          	<form class="form-signin" action="/Users/login" method="post">
-            <h2 class="form-signin-heading">Login</h2>
-<?php 		if(isset($errors['email']))
-			{ ?>
-			 	<span class='red_text'><?php echo $errors['email'];?></span> 
-<?php		} ?>
-<?php 		if(isset($errors['errors']))
-			{ ?>
-			 	<span class='red_text'><?php echo $errors['errors'];?></span> 
-<?php		} ?>
-            <input type="text" name="email" class="form-control" placeholder="Email" required autofocus>
-<?php 		if(isset($errors['password']))
-			{ ?>
-			 	<span class='red_text'><?php echo $errors['password'];?></span> 
-<?php		} ?>	
-            <input type="password" name="password" class="form-control" placeholder="Password" required>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-        	<a href="/users/load_registration">Don't have an account? Register here</a>
-          </form>
+	      	<form class="form-signin" action="/Users/update" method="post">
+		        <h2 class="form-signin-heading">Change Password</h2>
+ 		        <label>Old Password:</label>
+		        <input type="password" name="old_password" class="form-control" placeholder="Old Password" required>
+		        <span class='red_text'><?php echo form_error('password');?></span>
+				<label>New Password:</label>
+		        <input type="password" name="password" class="form-control" placeholder="New Password" required>
+		        <span class='red_text'><?php echo form_error('password');?></span>    
+		        <label>Confirm New Password:</label>
+		        <input type="password" name="confirm" class="form-control" placeholder="Confirm New Password" required>
+		        <span class='red_text'><?php echo form_error('confirm');?></span>
+		        <div class="checkbox">
+		        </div>
+		        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+	      	</form>
     	</div>
     	<div class="container">
       		<nav class="navbar navbar-inverse navbar-fixed-bottom">
       			<div class="navbar-bottom">
-      				<a id="about" class="navbar-brand navbar-bottom" href="#">About Us</a>
+      				<a id="about" class="navbar-brand navbar-bottom" href="">About Us</a>
       				<a class="navbar-brand navbar-bottom" href="/users/load_contact_us">Contact Us</a>
       				<p class="navbar-brand navbar-bottom">&copy; 2016 HealthyNinja</p>
       			</div>
