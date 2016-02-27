@@ -1,3 +1,4 @@
+<?php  $errors = $this->session->flashdata('errors');?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -28,27 +29,48 @@
 	      	<form class="form-signin" action="/Users/register" method="post">
 		        <h2 class="form-signin-heading">Register</h2>
                 <label>First Name:</label>
+<?php 		if(isset($errors['first_name']))
+			{ ?>
+			 	<span class='red_text'><?php echo $errors['first_name'];?></span> 
+<?php		} ?>    
 		        <input type="text" name="first_name" class="form-control" placeholder="First Name" required>
-				<span class='red_text'><?php echo form_error('first_name');?></span>        
 		        <label>Last Name:</label>
+<?php 		if(isset($errors['last_name']))
+			{ ?>
+			 	<span class='red_text'><?php echo $errors['last_name'];?></span> 
+<?php		} ?>    
 		        <input type="text" name="last_name" class="form-control" placeholder="Last Name" required>
-		        <span class='red_text'><?php echo form_error('last_name');?></span>  
 		        <label>Email:</label>
+<?php 		if(isset($errors['email']))
+			{ ?>
+			 	<span class='red_text'><?php echo $errors['email'];?></span> 
+<?php		} ?>    
 		        <input type="email" name="email" class="form-control" placeholder="Email" required>
-		        <span class='red_text'><?php echo form_error('email');?></span>  
 		        <label>Password:</label>
+<?php 		if(isset($errors['password']))
+			{ ?>
+			 	<span class='red_text'><?php echo $errors['password'];?></span> 
+<?php		} ?>    
 		        <input type="password" name="password" class="form-control" placeholder="Password" required>
-		        <span class='red_text'><?php echo form_error('password');?></span>  
 		        <label>Confirm Password:</label>
+<?php 		if(isset($errors['confirm']))
+			{ ?>
+			 	<span class='red_text'><?php echo $errors['confirm'];?></span> 
+<?php		} ?> 	    
 		        <input type="password" name="confirm" class="form-control" placeholder="Confirm Password" required>
-		        <span class='red_text'><?php echo form_error('confirm');?></span>  	    
 		        <h2 class="form-signin-heading">Billing Info</h2>
 		        <label>Street Address:</label>
+<?php 		if(isset($errors['billing_street']))
+			{ ?>
+			 	<span class='red_text'><?php echo $errors['billing_street'];?></span> 
+<?php		} ?> 			        
 		        <input type="text" name="billing_street" class="form-control" placeholder="Street Address" required>
-				<span class='red_text'><?php echo form_error('billing_street');?></span>  			        
 		        <label>City:</label>
-		        <input type="text" name="billing_city" class="form-control" placeholder="City" required>
-				<span class='red_text'><?php echo form_error('confirm');?></span>  	
+<?php 		if(isset($errors['billing_city']))
+			{ ?>
+			 	<span class='red_text'><?php echo $errors['billing_city'];?></span> 
+<?php		} ?>  	
+		        <input type="text" name="billing_city" class="form-control" placeholder="City"> 
 		        <label>State:</label>
 				<select class="form-control" name="billing_state" required>
 					<option class="grey" selected disabled hidden value=''></option>
@@ -105,8 +127,11 @@
 					<option value="Wyoming">Wyoming</option>
 				</select> <br>
 		       <label>Zipcode:</label>
+<?php 		if(isset($errors['billing_zip']))
+			{ ?>
+			 	<span class='red_text'><?php echo $errors['billing_zip'];?></span> 
+<?php		} ?>   	
 		        <input type="text" pattern="[0-9]{5}" name="billing_zip" class="form-control" placeholder="Zip Code" oninvalid="setCustomValidity('Please enter a valid 5 digit zip code')">
-				<span class='red_text'><?php echo form_error('confirm');?></span>  	
 		        <div class="checkbox">
 		        </div>
 		        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>

@@ -1,3 +1,4 @@
+<?php  $errors = $this->session->flashdata('errors');?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -44,12 +45,20 @@
 <?php  	} ?>
 		<div class="container">
           	<form class="form-signin" action="/Users/login" method="post">
-<?php   if($this->session->flashdata("errors_login"))
-      { ?>
-        <h2><?php echo $this->session->flashdata("errors_login");?></h2>
-<?php } ?>
             <h2 class="form-signin-heading">Login</h2>
+<?php 		if(isset($errors['email']))
+			{ ?>
+			 	<span class='red_text'><?php echo $errors['email'];?></span> 
+<?php		} ?>
+<?php 		if(isset($errors['errors']))
+			{ ?>
+			 	<span class='red_text'><?php echo $errors['errors'];?></span> 
+<?php		} ?>
             <input type="text" name="email" class="form-control" placeholder="Email" required autofocus>
+<?php 		if(isset($errors['password']))
+			{ ?>
+			 	<span class='red_text'><?php echo $errors['password'];?></span> 
+<?php		} ?>	
             <input type="password" name="password" class="form-control" placeholder="Password" required>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
         	<a href="/users/load_registration">Don't have an account? Register here</a>

@@ -1,7 +1,4 @@
-<?php  
-$errors = $this->session->flashdata('errors');
-
-?>
+<?php  $errors = $this->session->flashdata('errors');?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -50,16 +47,29 @@ $errors = $this->session->flashdata('errors');
 	      	<form class="form-signin" action="/Users/change_password" method="post">
 		        <h2 class="form-signin-heading">Change Password</h2>
 
-                <label>Old Password:</label>
-				<span class='red_text'><?php echo $errors['password'];?></span>  		  
-		        <input type="password" name="old_password" class="form-control" placeholder="Old Password" required>
+                <label>Current Password:</label>
+<?php  			if(isset($errors['current_password']))
+				{ ?>
+				 	<span class='red_text'><?php echo $errors['old_password'];?></span> 
+<?php			} ?>	  
+		        <input type="password" name="current_password" class="form-control" placeholder="Current Password" required>
 
 		        <label>New Password:</label>
-				<span class='red_text'><?php echo form_error('password');?></span>        
+<?php 			if(isset($errors['errors']))
+				{ ?>
+			 	<span class='red_text'><?php echo $errors['errors'];?></span> 
+<?php			} ?>
+<?php 			if(isset($errors['password']))
+				{ ?>
+				 	<span class='red_text'><?php echo $errors['password'];?></span> 
+<?php			} ?>       
 		        <input type="password" name="password" class="form-control" placeholder="New Password" required>
 
 		        <label>Confirm New Password:</label>
-		        <span class='red_text'><?php echo form_error('confirm');?></span>  
+<?php 			if(isset($errors['confirm']))
+				{ ?>
+				 	<span class='red_text'><?php echo $errors['confirm'];?></span> 
+<?php			} ?> 
 		        <input type="password" name="confirm" class="form-control" placeholder="Confirm New Password" required>
 		       
 		        <button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>

@@ -1,3 +1,4 @@
+<?php  $errors = $this->session->flashdata('errors'); var_dump($errors);?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -46,21 +47,36 @@
 	      	<form class="form-signin" action="/Users/update" method="post">
 		        <h2 class="form-signin-heading">Update Information</h2>
                 <label>First Name:</label>
+<?php 		if(isset($errors['first_name']))
+			{ ?>
+			 	<span class='red_text'><?php echo $errors['first_name'];?></span> 
+<?php		} ?>         
 		        <input type="text" name="first_name" class="form-control" value="<?php echo $user_information['first_name'];?>" required>
-				<span class='red_text'><?php echo form_error('first_name');?></span>        
 		        <label>Last Name:</label>
+<?php 		if(isset($errors['last_name']))
+			{ ?>
+			 	<span class='red_text'><?php echo $errors['last_name'];?></span> 
+<?php		} ?>   
 		        <input type="text" name="last_name" class="form-control" value="<?php echo $user_information['last_name'];?>" required>
-		        <span class='red_text'><?php echo form_error('last_name');?></span>  
 		        <label>Email:</label>
+<?php 		if(isset($errors['email']))
+			{ ?>
+			 	<span class='red_text'><?php echo $errors['email'];?></span> 
+<?php		} ?>   
 		        <input type="email" name="email" class="form-control" value="<?php echo $user_information['email'];?>" required>
-		        <span class='red_text'><?php echo form_error('email');?></span>  
 		        <h2 class="form-signin-heading">Update Billing Info</h2>
 		        <label>Street Address:</label>
+<?php 		if(isset($errors['billing_street']))
+			{ ?>
+			 	<span class='red_text'><?php echo $errors['billing_street'];?></span> 
+<?php		} ?> 		
 		        <input type="text" name="billing_street" class="form-control" value="<?php echo $user_information['billing_street'];?>" required>
-				<span class='red_text'><?php echo form_error('billing_street');?></span>  			        
 		        <label>City:</label>
+<?php 		if(isset($errors['billing_city']))
+			{ ?>
+			 	<span class='red_text'><?php echo $errors['billing_city'];?></span> 
+<?php		} ?> 	
 		        <input type="text" name="billing_city" class="form-control" value="<?php echo $user_information['billing_city'];?>" required>
-				<span class='red_text'><?php echo form_error('confirm');?></span>  	
 		        <label>State:</label>
 				<select class="form-control" name="billing_state" required>
 					<option selected><?php echo $user_information['billing_state'];?></option>
@@ -117,8 +133,11 @@
 					<option value="Wyoming">Wyoming</option>
 				</select> <br>
 		       <label>Zipcode:</label>
+<?php 		if(isset($errors['billing_zip']))
+			{ ?>
+			 	<span class='red_text'><?php echo $errors['billing_zip'];?></span> 
+<?php		} ?>  
 		        <input type="text" pattern="[0-9]{5}" name="billing_zip" class="form-control" value="<?php echo $user_information['billing_zip'];?>" oninvalid="setCustomValidity('Please enter a valid 5 digit zip code')">
-				<span class='red_text'><?php echo form_error('confirm');?></span>  	
 		        <div class="checkbox">
 		        </div>
 		        <button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>

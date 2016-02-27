@@ -16,6 +16,14 @@ Class User extends CI_Model
 		$values = array($id);
 		return $this->db->query($query, $values)->row_array();
 	}
+	/*this function will query the email so that the email validation won't return error if the
+	current user leaves the email field as the same email that's in the database*/
+	public function get_email($id)
+	{
+		$query = "SELECT email FROM users WHERE id = ?";
+		$values = array($id);
+		return $this->db->query($query, $values)->row_array();
+	}
 	/*this function will register a user*/
 	public function add_user($post)
 	{
