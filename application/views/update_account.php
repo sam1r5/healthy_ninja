@@ -1,4 +1,4 @@
-<?php  $errors = $this->session->flashdata('errors'); var_dump($errors);?>
+<?php  $errors = $this->session->flashdata('errors');?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
