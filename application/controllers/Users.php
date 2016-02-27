@@ -201,8 +201,8 @@ class Users extends CI_Controller {
 		}
 		else
 		{
-			$data['errors'] = 'Incorrect Current Password';
-			$this->session->set_flashdata('errors', $data);
+			$data = 'Incorrect Current Password';
+			$this->session->set_flashdata('error', $data);
 			redirect('/users/load_update_password');
 		}
 	}

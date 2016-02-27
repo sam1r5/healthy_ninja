@@ -1,4 +1,7 @@
-<?php  $errors = $this->session->flashdata('errors');?>
+<?php  $errors = $this->session->flashdata('errors');
+	   $current_password_error = $this->session->flashdata('error');
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -48,9 +51,13 @@
 		        <h2 class="form-signin-heading">Change Password</h2>
 
                 <label>Current Password:</label>
+<?php 			if(isset($current_password_error))
+				{ ?>
+			 	<span class='red_text'><?php echo $current_password_error;?></span> 
+<?php			} ?>
 <?php  			if(isset($errors['current_password']))
 				{ ?>
-				 	<span class='red_text'><?php echo $errors['old_password'];?></span> 
+				 	<span class='red_text'><?php echo $errors['current_password'];?></span> 
 <?php			} ?>	  
 		        <input type="password" name="current_password" class="form-control" placeholder="Current Password" required>
 

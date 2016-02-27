@@ -57,7 +57,7 @@ Class User extends CI_Model
 	{
 		$id = $this->session->userdata('id');		
 		$query = "UPDATE users SET email = ?, updated_at = NOW() WHERE id = $id";
-		$values = array($post['email']);
+		$values = array($post);
 		$this->db->query($query, $values);
 	}
 
