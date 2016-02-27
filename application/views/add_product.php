@@ -43,7 +43,7 @@
       	</div>
 <?php  	} ?>
 		<div class="container">
-          	<form id="add_product" class="form-signin" action="/Product/add_new" method="post" enctype="multipart/form-data">
+          	<form class="form-signin" action="/Products/add_new_product" method="post" enctype="multipart/form-data">
             <h2 class="form-signin-heading">Add New Product</h2>
             <label>Select Category of Product to Add</label>
             <select class="form-control" name="category">
