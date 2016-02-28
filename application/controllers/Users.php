@@ -109,6 +109,7 @@ class Users extends CI_Controller {
 				$data = $this->User->login_verification($post);
 				$this->session->set_userdata('id', $data['id']);
 				$this->session->set_userdata('name', $data['first_name']);
+				$this->session->set_userdata('admin_status', $data['admin_status']);
 				redirect('/');
 			}
 			else
@@ -149,7 +150,7 @@ class Users extends CI_Controller {
 			$this->form_validation->set_rules("email", "Email", 'trim|required|valid_email|is_unique[users.email]');
 			$this->form_validation->set_message('is_unique', 'The %s "' . $post['email'] . '" is already taken');
 		}
-
+		
 		if($this->form_validation->run() == FALSE)
 		{
 			$data = $this->form_validation->error_array();

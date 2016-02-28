@@ -42,48 +42,24 @@
 	      	</nav>
       	</div>
 <?php  	} ?>
-     	<div id="cat_selector">
-     		<label>Select Products to View</label>
-     		<form name="product_viewer" action="/Products/view_selector" method="post">
-     			<select name="product_selector">
-     				<option value="all">All Products</option>
-     				<option value="beverages">Beverages</option>
-     				<option value="supplements">Supplements</option>
-     				<option value="bars">Bars</option>
-     			</select>
-     			<input type="submit" name="submit" value="Submit">
-     		</form>
-     		<form name="add_new" action='/Products/load_add_product' method="post">
-     			<input type='submit' name='submit' value='Add New Product'>
-     		</form>
-     	</div>
 		<div class="container">
-          	<table class="table">
-		        <thead class="thead-inverse">
-		          <tr>
-		            <th>Item Name</th>
-		            <th>Price</th>
-		            <th>Description</th>
-		            <th>Action</th>
-		          </tr>
-		        </thead>
-		        <tbody>
-		        	<?php foreach($product as $products)
-		        	{ ?>
-		          <tr>
-		            <td><?php echo $products['name']; ?></td>
-		            <td><?php echo $products['price']; ?></td>
-		            <td><?php echo $products['description']; ?></td>
-		            <td>
-		            	<form action='/Products/load_update' method='post'>
-		            		<input type='submit' name='submit' value='Edit Product'>
-		            		<input type='hidden' name='product_id' value="<?php echo $products['id']; ?>">
-		            	</form>
-		            </td>
-		          </tr>
-		          <?php } ?>
-		        </tbody>
-	      	</table>
+          	<form class="form-signin" action="/Products/update_product" method="post" enctype="multipart/form-data">
+            <h2 class="form-signin-heading">Update Product</h2>
+            <label>Change Category</label>
+            <select class="form-control" name="category">
+            	<option selected><?php echo $product_info['category']; ?></option>
+            	<option value="Beverages">Beverages</option>
+            	<option value="Supplements">Supplements</option>
+            	<option value="Bars">Bars</option>
+            </select>
+            <input type="text" name="product_name" class="form-control" value="<?php echo $product_info['name']; ?>" required autofocus>
+            <input type="text" name="product_price" class="form-control" value="<?php echo $product_info['price']; ?>" required>
+            <textarea name="product_description" class="form-control" required><?php echo $product_info['description']; ?></textarea>
+            <label>Select Product Image to Upload</label>
+            <input type="file" name="product_image" class="form-control" required>
+            <input type='hidden' name='product_id' class='form-control'value="<?php echo $product_info['id']; ?>">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Update Product</button>
+          </form>
     	</div>
     	<div class="container">
       		<nav class="navbar navbar-inverse navbar-fixed-bottom">
