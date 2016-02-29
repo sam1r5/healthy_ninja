@@ -81,8 +81,6 @@ class Users extends CI_Controller {
 			$post = $this->input->post();
 			$this->User->add_user($post);
 			$data = $this->User->login_verification($post);
-			$this->session->set_userdata('id', $data['id']);
-			$this->session->set_userdata('name', $data['first_name']);
 			redirect('/');
 		}			
 	}
