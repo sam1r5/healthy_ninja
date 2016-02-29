@@ -39,6 +39,7 @@
 	      		</div>
 	      	</nav>
       	</div>
+
 <?php  	} ?>
 		<nav class="navbar navbar-inverse navbar-fixed-bottom">
 			<div class="navbar-bottom">

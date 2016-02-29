@@ -77,9 +77,8 @@
 				{ ?>
 				 	<span class='red_text'><?php echo $errors['confirm'];?></span> 
 <?php			} ?> 
-		        <input type="password" name="confirm" class="form-control" placeholder="Confirm New Password" required>
-		       
-		        <button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
+		        <input type="password" name="confirm" class="form-control" placeholder="Confirm New Password" required> 
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
 	      	</form>
     	</div>
     	<div class="container">

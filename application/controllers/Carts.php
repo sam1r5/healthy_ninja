@@ -1,7 +1,7 @@
 <?php 
 class Carts extends CI_Controller
 {
-	public function load_cart()
+	public function cart()
 	{
 		if($this->session->userdata('id') !== null)
 		{
