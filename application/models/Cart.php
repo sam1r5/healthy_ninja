@@ -39,7 +39,6 @@ class Cart extends CI_Model
 	public function item_price()
 	{
 		$products = $this->get_user_cart();
-		$result = [];
 		$query = "SELECT (cart_relationships.quantity * products.price) as total  FROM cart_relationships 
 		LEFT JOIN products on products.id = cart_relationships.product_id 
 		WHERE product_id = ?";
