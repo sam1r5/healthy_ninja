@@ -6,7 +6,9 @@ class Carts extends CI_Controller
 		if($this->session->userdata('id') !== null)
 		{
 			$this->load->model('Cart');
-			$data['items'] = $this->Cart->get_user_cart();
+			$this->Cart->total_price();
+			$data['items'] = $this->Cart->item_price();
+			$data['cost'] = $this->Cart->total_price();
 			$this->load->view('/cart', $data);
 		}
 		else
@@ -34,6 +36,12 @@ class Carts extends CI_Controller
 		$this->load->model('Cart');
 		$this->Cart->delete_item($this->input->post());
 		redirect("/carts/load_cart");
+	}
+
+	public function payment()
+	{
+		require_once('vendor/autoload.php');
+
 	}
 
 }
