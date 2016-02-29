@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<?php //var_dump($cost); die(); ?>
 <html lang="en">
 	<head>
 		<meta charset="utf-8"/>
@@ -44,6 +44,8 @@
       			<tr>
       				<td>Product Name</td>
       				<td>Product Quantity</td>
+      				<td>Product Price</td>
+      				<td>Product Total</td>
       				<td>Update Quantity</td>
       				<td>Delete</td>
       			</tr>
@@ -57,6 +59,8 @@
 	      			<tr>
  						<td><?php echo $item['name'] ?></td>
  						<td><?php echo $item['quantity'] ?></td>
+						<td><?php echo $item['price'] ?></td>
+						<td><?php echo $item[0]['total'] ?></td>
  						<td>
 	 						<form action="/carts/update_quantity" method="post" class="cart">
 	 							<input	type="hidden" name="product_id" value="<?= $item['id'] ?>">			
@@ -86,7 +90,19 @@
  					}
   ?>
       		</tbody>
+      		<td>Total Cost: <?php echo $cost ?></td>
       	</table>
+      	<form action="" method="POST">
+		  <script
+		    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+		    data-key="pk_test_7iOHbJHH30UWg4T6rvntOiGC"
+		    data-amount="2000"
+		    data-name="HealthyNinja"
+		    data-description="2 widgets ($20.00)"
+		    data-image="/128x128.png"
+		    data-locale="auto">
+		  </script>
+		</form>
 <?php	}?>
 <?php 	if(!$this->session->userdata('id'))
 		{ ?>
