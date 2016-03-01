@@ -34,7 +34,7 @@
 		    <form class="form-signin" action="/users/load_update_password"><button class="btn btn-lg btn-primary btn-block" type="submit">Change Password</button></form>
 		    <?php if($this->session->userdata('admin_status') == 1)
 		    		{ ?>
-		    <form action='/users/load_admin_dashboard'><button class='btn btn-lg btn-primary btn-block' type='submit'>Load Admin Dashboard</button></form>
+		    <form action='/users/load_admin_dashboard' class="form-signin"><button class='btn btn-lg btn-primary btn-block' type='submit'>Load Admin Dashboard</button></form>
 
 		    		<?php } ?>
     	</div>

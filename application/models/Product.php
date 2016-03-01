@@ -23,8 +23,18 @@ Class Product extends CI_Model
 			WHERE products.id =" . $prod_id;
 			return $this->db->query($query)->row_array();
 	}
-	public function update_product($id)
+	public function get_products_by_category($prod_cat)
 	{
-		
+		$query = "SELECT products.name as name, category, description, price, id 
+			FROM products 
+			WHERE category =" . $prod_cat;
+			return $this->db->query($query)->result_array();
+	}
+	public function update_product($post)
+	{
+		$id = $post['product_id'];
+		$query = "UPDATE products SET products.name = ?, description = ?, price = ?, updated_at = NOW() WHERE products.id = $id";
+		$values = array($post['product_name'], $post['product_description'], $post['product_price']);
+		$this->db->query($query, $values);
 	}
 }

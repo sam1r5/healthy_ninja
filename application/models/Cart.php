@@ -39,7 +39,6 @@ class Cart extends CI_Model
 	public function item_price()
 	{
 		$products = $this->get_user_cart();
-		$result = [];
 		$query = "SELECT (cart_relationships.quantity * products.price) as total  FROM cart_relationships 
 		LEFT JOIN products on products.id = cart_relationships.product_id 
 		WHERE product_id = ?";
@@ -61,13 +60,13 @@ class Cart extends CI_Model
 		{
 			$cost += $items[$i][0]['total'];
 		}
-		return $cost;
+		return floatval(money_format('%i', $cost));
 	}
 
 	public function delete_cart()
 	{
-		$query = "DELETE from cart_relationships where user_id = ?";
-		array($this->session->userdata('id'));
+		$query = "DELETE from cart_relationships where cart_id = ?";
+		$values = array($this->session->userdata('id'));
 		$this->db->query($query, $values);
 	}
 
@@ -111,6 +110,32 @@ class Cart extends CI_Model
 	public function get_guest_cart()
 	{
 		$this->cart->contents();
+	}
+
+	public function payment()
+	{
+		//update the orders table
+		$total = $this->total_price();
+		$products = $this->item_price();
+		$query = "INSERT INTO orders (user_id, total, created_at, updated_at) VALUES (?,?,?,?)";
+		$values = array($this->session->userdata('id'), $total, date("Y-m-d, H:i:s"), date("Y-m-d, H:i:s"));
+		$this->db->query($query, $values);
+		//get the order id
+		//var_dump($this->db->query("SELECT LAST_INSERT_ID()")->row_array()); die('in the payment model');
+		$order_id = $this->db->query("SELECT LAST_INSERT_ID()")->row_array();
+		$order_id = $order_id['LAST_INSERT_ID()'];
+		$query = "INSERT INTO order_relationships (product_id, order_id, quantity, price, product_total, created_at, updated_at) VALUES (?,?,?,?,?,?,?)";
+		for($i = 0; $i<count($products); $i++)
+		{
+			$quantity = $products[$i]['quantity'];
+			$price = $products[$i]['price'];
+			$total = money_format('%i', floatval($products[$i][0]['total']));
+			$product_id = $products[$i]['id'];
+			$values = array($product_id, $order_id, $quantity, $price, $total,date("Y-m-d, H:i:s"), date("Y-m-d, H:i:s"));
+			$this->db->query($query, $values);
+		}
+		$this->delete_cart();
+
 	}
 }
  ?>
