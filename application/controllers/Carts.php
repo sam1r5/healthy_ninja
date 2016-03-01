@@ -12,9 +12,11 @@ class Carts extends CI_Controller
 		if($this->session->userdata('id') !== null)
 		{
 			$this->load->model('Cart');
-			$this->Cart->total_price();
+			$this->load->model('User');
+			$data['user'] = $this->User->get_user($this->session->userdata('id'));
 			$data['items'] = $this->Cart->item_price();
 			$data['cost'] = $this->Cart->total_price();
+			//var_dump($data);
 			$this->load->view('/cart', $data);
 		}
 		else if($this->cart->contents() != null)
@@ -24,7 +26,7 @@ class Carts extends CI_Controller
 		}
 		else
 		{
-			$this->load->view('/cart')
+			$this->load->view('/cart');
 		}
 	}
 
@@ -57,34 +59,72 @@ class Carts extends CI_Controller
 		require_once('vendor/autoload.php');
 		require_once(APPPATH.'libraries/stripe-php-3.9.1/lib/Stripe.php');
 		$this->load->model('Cart');
-		if($this->session->userdata('id') !== "0")
+		$post = $this->input->post();
+		$this->load->library("form_validation");
+		$this->form_validation->set_rules("first_name", "First name", 'trim|required|min_length[2]');
+		$this->form_validation->set_rules("last_name", "Last name", 'trim|required|min_length[2]');
+		$this->form_validation->set_rules("billing_street", "Street Address", 'trim|required');
+		$this->form_validation->set_rules("billing_city", "City", 'trim|required');
+		$this->form_validation->set_rules("billing_state", "State", 'trim|required');
+		$this->form_validation->set_rules("billing_zip", "Zip Code", 'trim|required');
+		if($this->form_validation->run() == FALSE)
 		{
-			$amount = ($this->Cart->total_price()*100);
+			$data = $this->form_validation->error_array();
+			$this->session->set_flashdata('errors', $data);
+			if($this->session->userdata('id') !== null)
+			{
+				$this->load->model('Cart');
+				$this->load->model('User');
+				$data['user'] = $this->User->get_user($this->session->userdata('id'));
+				$data['items'] = $this->Cart->item_price();
+				$data['cost'] = $this->Cart->total_price();
+				var_dump($data);
+				die('in the wrong place');
+				$this->load->view('/cart', $data);
+			}
+			else if($this->cart->contents() != null)
+			{
+				$data['items'] = $this->cart->contents();
+				$this->load->view('/cart', $data);
+			}
+			else
+			{
+				$this->load->view('/cart', $data);
+			}
+			
+		}
+		else
+		{
+			if($this->session->userdata('id') !== "0")
+			{
+				$amount = ($this->Cart->total_price()*100);
 
-			$stripe = array(
-			  "secret_key"      => "sk_test_SMEWYjteWylw6ogtVSEaKP8a",
-			  "publishable_key" => "pk_test_7iOHbJHH30UWg4T6rvntOiGC"
+				$stripe = array(
+				  "secret_key"      => "sk_test_SMEWYjteWylw6ogtVSEaKP8a",
+				  "publishable_key" => "pk_test_7iOHbJHH30UWg4T6rvntOiGC"
 
-			);
+				);
 
-			\Stripe\Stripe::setApiKey($stripe['secret_key']);
+				\Stripe\Stripe::setApiKey($stripe['secret_key']);
 
-			$token  = $this->input->post('stripeToken');
+				$token  = $this->input->post('stripeToken');
 
-			$customer = \Stripe\Customer::create(array(
-			    'email' => $this->input->post("stripeEmail"),
-			    'card'  => $token
-			));
+				$customer = \Stripe\Customer::create(array(
+				    'email' => $this->input->post("stripeEmail"),
+				    'card'  => $token
+				));
 
-			$charge = \Stripe\Charge::create(array(
-			    'customer' => $customer->id,
-			    'amount'   => $amount,
-			    'currency' => 'usd'
-			  ));
+				$charge = \Stripe\Charge::create(array(
+				    'customer' => $customer->id,
+				    'amount'   => $amount,
+				    'currency' => 'usd'
+				  ));
 
-			$this->load->model('Cart');
-			$this->Cart->payment();
-			$this->load->view('/order_conformation')
+				$this->load->model('Cart');
+				$this->Cart->payment();
+				die('its ending');
+				$this->load->view('/order_confirmation');
+			}
 		}
 	}
 

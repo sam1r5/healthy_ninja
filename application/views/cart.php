@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<?php //var_dump($cost); die(); ?>
+<?php $errors = $this->session->flashdata(); 
+/*var_dump($user);
+die();*/?>
 <html lang="en">
 	<head>
 		<meta charset="utf-8"/>
@@ -14,7 +16,7 @@
 			$(document).ready(function(){
 				// jQuery codes here
 				
-				$("form").on("change", function() {
+				$(".cart").on("change", function() {
 					$(this).submit();
 				})
 				// $("select").on("change", function() {
@@ -22,6 +24,15 @@
 				// });
 			});
 		</script>
+		<style type="text/css">
+		.red_text {
+			color: red;
+		}
+		.display-none
+		{
+			display: none;
+		}
+		</style>
 	</head>
 	<body>
 <?php   if($this->session->userdata('id'))
@@ -92,17 +103,119 @@
       		</tbody>
       		<td>Total Cost: <?php echo "$".money_format('%i', $cost) ?></td>
       	</table>
-      	<form action="/carts/payment" method="POST">
-		  <script
-		    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-		    data-key="pk_test_7iOHbJHH30UWg4T6rvntOiGC"
-		    data-amount="<?php floatval($cost*100) ?>"
-		    data-name="HealthyNinja"
-		    data-description="<?php  echo count($items) ." items for " .$cost?>"
-		    data-image=""
-		    data-locale="auto">
-		  </script>
-		</form>
+      	<div class="container">
+      	<form action="/carts/payment" method="post" class="form-signin">
+      		<h2 class="form-signin-heading">Shipping Address</h2>
+                <label>First Name:</label>
+<?php 		if(isset($errors['errors']['first_name']))
+			{ ?>
+			 	<span class='red_text'><?php echo $errors['errors']['first_name'];?></span> 
+<?php		} ?>    
+		        <input type="text" name="first_name" class="form-control" placeholder="First Name" value="<?php echo $user['first_name'] ?>" required>
+		        <label>Last Name:</label>
+<?php 		if(isset($errors['errors']['last_name']))
+			{ ?>
+			 	<span class='red_text'><?php echo $errors['errors']['last_name'];?></span> 
+<?php		} ?>    
+		        <input type="text" name="last_name" class="form-control" placeholder="Last Name" value="<?php echo $user['last_name'] ?>" required>
+		        <label>Email:</label>
+<?php 		if(isset($errors['errors']['email']))
+			{ ?>
+			 	<span class='red_text'><?php echo $errors['errors']['email'];?></span> 
+<?php		} ?>    
+		        <input type="email" name="email" class="form-control" placeholder="Email" value="<?php echo $user['email'] ?>" required>
+		        <label>Street Address:</label>
+<?php 		if(isset($errors['errors']['billing_street']))
+			{ ?>
+			 	<span class='red_text'><?php echo $errors['errors']['billing_street'];?></span> 
+<?php		} ?> 			        
+		        <input type="text" name="billing_street" class="form-control" placeholder="Street Address" value="<?php echo $user['billing_street'] ?>"required>
+		        <label>City:</label>
+<?php 		if(isset($errors['errors']['billing_city']))
+			{ ?>
+			 	<span class='red_text'><?php echo $errors['errors']['billing_city'];?></span> 
+<?php		} ?>  	
+		        <input type="text" name="billing_city" class="form-control" value="<?php echo $user['billing_city'] ?>" placeholder="City"> 
+		        <label>State:</label>
+				<select class="form-control" name="billing_state" required>
+					<option selected><?php echo $user['billing_state'];?></option>
+					<option value="Alabama">Alabama</option>
+					<option value="Alaska">Alaska</option>
+					<option value="Arizona">Arizona</option>
+					<option value="Arkansas">Arkansas</option>
+					<option value="California">California</option>
+					<option value="Colorado">Colorado</option>
+					<option value="Connecticut">Connecticut</option>
+					<option value="Delaware">Delaware</option>
+					<option value="District Of Columbia">District Of Columbia</option>
+					<option value="Florida">Florida</option>
+					<option value="Georgia">Georgia</option>
+					<option value="Hawaii">Hawaii</option>
+					<option value="Idaho">Idaho</option>
+					<option value="Illinois">Illinois</option>
+					<option value="Indiana">Indiana</option>
+					<option value="Iowa">Iowa</option>
+					<option value="Kansas">Kansas</option>
+					<option value="Kentucky">Kentucky</option>
+					<option value="Louisiana">Louisiana</option>
+					<option value="Maine">Maine</option>
+					<option value="Maryland">Maryland</option>
+					<option value="Massachusetts">Massachusetts</option>
+					<option value="Michigan">Michigan</option>
+					<option value="Minnesota">Minnesota</option>
+					<option value="Mississippi">Mississippi</option>
+					<option value="Missouri">Missouri</option>
+					<option value="Montana">Montana</option>
+					<option value="Nebraska">Nebraska</option>
+					<option value="Nevada">Nevada</option>
+					<option value="New Hampshire">New Hampshire</option>
+					<option value="New Jersey">New Jersey</option>
+					<option value="New Mexico">New Mexico</option>
+					<option value="New York">New York</option>
+					<option value="North Carolina">North Carolina</option>
+					<option value="North Dakota">North Dakota</option>
+					<option value="Ohio">Ohio</option>
+					<option value="Oklahoma">Oklahoma</option>
+					<option value="Oregon">Oregon</option>
+					<option value="Pennsylvania">Pennsylvania</option>
+					<option value="Rhode Island">Rhode Island</option>
+					<option value="South Carolina">South Carolina</option>
+					<option value="South Dakota">South Dakota</option>
+					<option value="Tennessee">Tennessee</option>
+					<option value="Texas">Texas</option>
+					<option value="Utah">Utah</option>
+					<option value="Vermont">Vermont</option>
+					<option value="Virginia">Virginia</option>
+					<option value="Washington">Washington</option>
+					<option value="West Virginia">West Virginia</option>
+					<option value="Wisconsin">Wisconsin</option>
+					<option value="Wyoming">Wyoming</option>
+				</select> <br>
+		       <label>Zipcode:</label>
+<?php 		if(isset($errors['errors']['billing_zip']))
+			{ ?>
+			 	<span class='red_text'><?php echo $errors['errors']['billing_zip'];?></span> 
+<?php		} ?>   	
+		        <input type="text" pattern="[0-9]{5}" name="billing_zip" class="form-control" value="<?php echo $user['billing_zip'] ?>" placeholder="Zip Code" oninvalid="setCustomValidity('Please enter a valid 5 digit zip code')">
+		        <div class='<?php 
+		        if(floatval($cost) == 0)
+		        {
+		        	echo "display-none";
+	        	}
+	        	?>'>
+			        <script
+				    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+				    data-key="pk_test_7iOHbJHH30UWg4T6rvntOiGC"
+				    data-amount="<?php floatval($cost*100) ?>"
+				    data-name="HealthyNinja"
+				    data-description="<?php  echo count($items) ." items for " .$cost?>"
+				    data-image=""
+				    data-locale="auto">
+				  </script>
+			  </div>
+      	</form>
+      	</div>
+
 <?php	}?>
 <?php 	if(!$this->session->userdata('id'))
 		{ ?>
