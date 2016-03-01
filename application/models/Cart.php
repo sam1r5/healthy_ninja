@@ -60,7 +60,7 @@ class Cart extends CI_Model
 		{
 			$cost += $items[$i][0]['total'];
 		}
-		return floatval(money_format('%i', $cost));
+		return money_format('%i', $cost);
 	}
 
 	public function delete_cart()

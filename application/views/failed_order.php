@@ -27,7 +27,7 @@
 	      		</div>
 	      	</nav>
       	</div>
-      	<h2>You have sucessfully placed your order! Please Shop With us again.</h2> 
+      	<h2>Something went wrong with your order. Please Try again.</h2> 
 <?php	}?>
 <?php 	if(!$this->session->userdata('id'))
 		{ ?>
@@ -35,13 +35,12 @@
 			<nav class="navbar navbar-inverse navbar-fixed-top">
 	      		<div class="container">
 		        	<div class="navbar-header">
-						<a class="navbar-brand navbar-right" href="/carts/cart">Cart</a>
 				        <a class="navbar-brand navbar-right" href="/users/load_login">Sign In</a>
 		        	</div>
 	      		</div>
 	      	</nav>
       	</div>
-      	<h2>You have sucessfully placed your order! Please Shop With us again.</h2> 
+      	      	<h2>Something went wrong with your order. Please Try again.</h2> 
 <?php  	} ?>
 		<nav class="navbar navbar-inverse navbar-fixed-bottom">
 			<div class="navbar-bottom">
