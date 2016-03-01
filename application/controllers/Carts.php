@@ -28,14 +28,14 @@ class Carts extends CI_Controller
 	{
 		$this->load->model('Cart');
 		$this->Cart->update_quantity($this->input->post());
-		redirect("/carts/load_cart");
+		redirect("/carts/cart");
 	}
 
 	public function delete_item()
 	{
 		$this->load->model('Cart');
 		$this->Cart->delete_item($this->input->post());
-		redirect("/carts/load_cart");
+		redirect("/carts/cart");
 	}
 
 	public function payment()

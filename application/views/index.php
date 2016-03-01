@@ -40,6 +40,7 @@
 			<nav class="navbar navbar-inverse navbar-fixed-top">
 	      		<div class="container">
 		        	<div class="navbar-header">
+						<a class="navbar-brand navbar-right" href="/carts/cart">Cart</a>
 				        <a class="navbar-brand navbar-right" href="/users/load_login">Sign In</a>
 		        	</div>
 	      		</div>
@@ -52,6 +53,8 @@
 			    <img src="/assets/images/landing_page/img2.jpg">
 			    <img src="/assets/images/landing_page/img3.jpg">
 			    <img src="/assets/images/landing_page/img4.jpg">
+			    <img src="/assets/images/landing_page/img5.jpg">
+			    <img src="/assets/images/landing_page/img6.jpg">
 			</div>
 		      	<div class="pictures"><a href="/products/load_product_beverage"><img class="images" src="/assets/images/beverages.jpg"></a></div
 				><div class="pictures"><a href="/products/load_product_food"><img class="images" src="/assets/images/health_bar.jpg"></a></div
