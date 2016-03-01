@@ -3,7 +3,8 @@
 	<head>
 		<meta charset="utf-8"/>
 		<title></title>
-		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="/assets/stylesheets/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/assets/stylesheets/index.css">
 		<meta name="description" content="insert description"/>
 		<script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
 		<script type="text/javascript">
@@ -41,6 +42,16 @@
       	</div>
 
 <?php  	} ?>
+		<div class="container">
+			<div class="containter">
+				<img src="/assets/images/<?php echo $product_info['name'] ?>.jpg">
+				<h3><?php echo $product_info['name'] ?></h3>
+				<form action="/Carts/add_product" method="post">
+					<input type="hidden" name="product_id" value="<?php echo $product_info['id'] ?>">
+					<input type="Submit" name="add_cart" value="Add To Cart">
+				</form>
+			</div>
+		</div>
 		<nav class="navbar navbar-inverse navbar-fixed-bottom">
 			<div class="navbar-bottom">
 				<a id="about" class="navbar-brand navbar-bottom" href="#">About Us</a>

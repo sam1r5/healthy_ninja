@@ -30,6 +30,8 @@ class Carts extends CI_Controller
 
 	public function add_product()
 	{
+		var_dump($this->input->post());
+		die();
 		$this->load->model('Cart');
 		$this->Cart->add_product($this->input->post());
 	}

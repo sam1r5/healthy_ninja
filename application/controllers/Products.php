@@ -82,8 +82,8 @@ class Products extends CI_Controller
 		$this->load->model('Product');
 		$product_info['product_info'] = $this->Product->get_product($post);
 		$this->load->model('Review');
-		$product_info['reviews'] = $this->Review->get_reviews($prod_id);
-		$this->load->view('products/product', $product_info);
+		$product_info['reviews'] = $this->Review->get_reviews($post);
+		$this->load->view('/product', $product_info);
 	}
 	public function load_success_page($data)
 	{
