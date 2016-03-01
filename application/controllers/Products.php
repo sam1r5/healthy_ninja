@@ -18,7 +18,7 @@ class Products extends CI_Controller
 		$this->load->model('Product');
 		//run the model function from product
 		//set the data to from the model to be transferred to the new page
-		$prod_cat['beverages'] = $this->Product->get_products_by_category('Beverages');
+		$prod_cat['products'] = $this->Product->get_products_by_category('Beverages');
 		$this->load->view('/categories', $prod_cat);
 	}
 
@@ -27,7 +27,7 @@ class Products extends CI_Controller
 		$this->load->model('Product');
 		//run the model function from product
 		//set the data to from the model to be transferred to the new page
-		$prod_cat['bars'] = $this->Product->get_products_by_category('Bars');
+		$prod_cat['products'] = $this->Product->get_products_by_category('Bars');
 		$this->load->view('/categories', $prod_cat);
 	}
 
@@ -36,7 +36,7 @@ class Products extends CI_Controller
 		$this->load->model('Product');
 			//run the model function from product
 			//set the data to from the model to be transferred to the new page
-		$prod_cat['supplements'] = $this->Product->get_products_by_category('Supplements');
+		$prod_cat['products'] = $this->Product->get_products_by_category('Supplements');
 		$this->load->view('/categories', $prod_cat);
 
 	}
@@ -48,7 +48,7 @@ class Products extends CI_Controller
 		$config['upload_path'] = './assets/images/';
 		$config['file_name'] = $name;
 		$config['allowed_types'] = 'gif|jpg|png';
-		$config['max_size'] = '100';
+		$config['max_size'] = '1000';
 		$config['max_width'] = '1024';
 		$config['max_height'] = '768';
 		$this->load->library('upload', $config);
@@ -76,10 +76,11 @@ class Products extends CI_Controller
 		// }
 	}
 	// Function below is taking get info from the link the user clicks on the category view. We pass that to the models to get the product info and reviews.
-	public function load_product_page($prod_id)
+	public function load_product_page()
 	{
+		$post = $this->input->post('product_id');
 		$this->load->model('Product');
-		$product_info['product_info'] = $this->Product->get_product($prod_id);
+		$product_info['product_info'] = $this->Product->get_product($post);
 		$this->load->model('Review');
 		$product_info['reviews'] = $this->Review->get_reviews($prod_id);
 		$this->load->view('products/product', $product_info);
