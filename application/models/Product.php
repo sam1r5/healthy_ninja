@@ -2,7 +2,7 @@
 
 Class Product extends CI_Model
 {
-	/*this function will */
+	/*this function will get all products for admin dashboard*/
 	public function get_all_product()
 	{
 		$query = "SELECT * FROM products";
