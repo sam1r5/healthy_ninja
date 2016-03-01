@@ -18,7 +18,7 @@ class Products extends CI_Controller
 		$this->load->model('Product');
 		//run the model function from product
 		//set the data to from the model to be transferred to the new page
-		$prod_cat['beverages'] = $this->Product->get_products_by_category('Beverage');
+		$prod_cat['beverages'] = $this->Product->get_products_by_category('Beverages');
 		$this->load->view('/categories', $prod_cat);
 	}
 
