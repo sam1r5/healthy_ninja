@@ -27,7 +27,7 @@ Class Product extends CI_Model
 	{
 		$query = "SELECT products.name as name, category, description, price, id 
 			FROM products 
-			WHERE category =" . $prod_cat;
+			WHERE category = '$prod_cat'";
 			return $this->db->query($query)->result_array();
 	}
 	public function update_product($post)
