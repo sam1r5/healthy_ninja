@@ -257,6 +257,12 @@ class Users extends CI_Controller {
 		}
 
 	}
+	public function load_user_dashboard()
+	{
+		$this->load->model('Order');
+		$data['orders'] = $this->Order->get_orders_by_user();
+		$this->load->view('/user_dashboard', $data);
+	}
 }
 
 ?>
