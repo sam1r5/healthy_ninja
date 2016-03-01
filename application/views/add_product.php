@@ -47,9 +47,9 @@
             <h2 class="form-signin-heading">Add New Product</h2>
             <label>Select Category of Product to Add</label>
             <select class="form-control" name="category">
-            	<option value="beverages">Beverages</option>
-            	<option value="supplements">Supplements</option>
-            	<option value="bars">Bars</option>
+            	<option value="Beverages">Beverages</option>
+            	<option value="Supplements">Supplements</option>
+            	<option value="Bars">Bars</option>
             </select>
             <input type="text" name="product_name" class="form-control" placeholder="Product Name" required autofocus>
             <input type="text" name="product_price" class="form-control" placeholder="Price (Numbers Only)" required>

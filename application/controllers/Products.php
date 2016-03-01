@@ -15,28 +15,30 @@ class Products extends CI_Controller
 	//It will also require the use of three diffrent model functions in the Product model page. 
 	public function load_product_beverage()
 	{
-		die('beverage');
 		$this->load->model('Product');
 		//run the model function from product
 		//set the data to from the model to be transferred to the new page
-		$this->load->view('/categories'/*, $data*/);
+		$prod_cat['beverages'] = $this->Product->get_products_by_category('Beverage');
+		$this->load->view('/categories', $prod_cat);
 	}
 
 	public function load_product_food()
 	{
-				die('food');
 		$this->load->model('Product');
 		//run the model function from product
 		//set the data to from the model to be transferred to the new page
-		$this->load->view('/categories'/*, $data*/);
+		$prod_cat['bars'] = $this->Product->get_products_by_category('Bars');
+		$this->load->view('/categories', $prod_cat);
 	}
 
 	public function load_product_supplement()
 	{
-				die('supplement');
 		$this->load->model('Product');
 			//run the model function from product
 			//set the data to from the model to be transferred to the new page
+		$prod_cat['supplements'] = $this->Product->get_products_by_category('Supplements');
+		$this->load->view('/categories', $prod_cat);
+
 	}
 	//Add a new product to the the webpage 
 	public function add_new_product()
