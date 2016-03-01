@@ -32,6 +32,12 @@ Class User extends CI_Model
 		$values = array($post['first_name'], $post['last_name'], $post['email'], md5($post['password']), $post['billing_street'], $post['billing_city'],
 			$post['billing_state'], $post['billing_zip'], 0);
 		$this->db->query($query, $values);
+		//the cart_id should equal the user.id. This query will do it. 
+		$user_id = $this->db->query("SELECT LAST_INSERT_ID()")->row_array();
+		$user_id = $order_id['LAST_INSERT_ID()'];
+		$query = "INSERT INTO carts (user_id, created_at, updated_at) Values (?,?,?)";
+		$values = array($user_id, date("Y-m-d, H:i:s"), date("Y-m-d, H:i:s"));
+		$this->db->query($query, $values);
 	}
 	/*this function will delete the user*/
 	public function delete_user($id)
