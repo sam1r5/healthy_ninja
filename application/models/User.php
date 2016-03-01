@@ -34,7 +34,13 @@ Class User extends CI_Model
 		$this->db->query($query, $values);
 		//the cart_id should equal the user.id. This query will do it. 
 		$user_id = $this->db->query("SELECT LAST_INSERT_ID()")->row_array();
-		$user_id = $order_id['LAST_INSERT_ID()'];
+		$user_id = $user_id['LAST_INSERT_ID()'];
+		// this part will make the first user registered into the admin.
+		if ($user_id == 1)
+		{
+			$query = "UPDATE users SET admin_status = 1, updated_at = NOW() WHERE id = 1";
+			$this->db->query($query);
+		}
 		$query = "INSERT INTO carts (user_id, created_at, updated_at) Values (?,?,?)";
 		$values = array($user_id, date("Y-m-d, H:i:s"), date("Y-m-d, H:i:s"));
 		$this->db->query($query, $values);
