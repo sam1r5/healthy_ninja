@@ -15,7 +15,9 @@
 	</head>
 	<body>
 <?php   if($this->session->userdata('id'))
-		{ ?>
+		{ 
+			$where_to_go = 'add_product';
+			?>
 		<div class="container">
 			<nav class="navbar navbar-inverse navbar-fixed-top">
 	      		<div class="container">
@@ -30,7 +32,9 @@
       	</div>
 <?php	}?>
 <?php 	if(!$this->session->userdata('id'))
-		{ ?>
+		{ 
+			$where_to_go = 'add_product_guest';
+			?>
 		<div class="container">
 			<nav class="navbar navbar-inverse navbar-fixed-top">
 	      		<div class="container">
@@ -46,8 +50,9 @@
 			<div class="containter">
 				<img src="/assets/images/<?php echo $product_info['name'] ?>.jpg">
 				<h3><?php echo $product_info['name'] ?></h3>
-				<form action="/Carts/add_product" method="post">
+				<form action="/Carts/<?php echo $where_to_go ?>" method="post">
 					<input type="hidden" name="product_id" value="<?php echo $product_info['id'] ?>">
+					<input type="hidden" name="quantity" value="1">
 					<input type="Submit" name="add_cart" value="Add To Cart">
 				</form>
 			</div>
