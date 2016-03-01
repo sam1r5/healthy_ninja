@@ -80,3 +80,16 @@ body {
 p{
 	margin-top: 10px;
 }
+
+.category_images{
+	width: 33%;
+	height: auto;
+	display: inline-block;
+	margin-left: 7%;
+	margin-right: 7%;
+	padding-bottom: 40px;
+}
+
+.view{
+	text-align: center;
+}
