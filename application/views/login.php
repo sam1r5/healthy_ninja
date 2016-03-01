@@ -37,6 +37,7 @@
 			<nav class="navbar navbar-inverse navbar-fixed-top">
 	      		<div class="container">
 		        	<div class="navbar-header">
+						<a class="navbar-brand navbar-right" href="/carts/cart">Cart</a>
 				        <a class="navbar-brand navbar-right" href="/users/load_login">Sign In</a>
 		        	</div>
 	      		</div>

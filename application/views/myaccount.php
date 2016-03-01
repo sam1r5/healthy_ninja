@@ -30,18 +30,6 @@
 	      	</nav>
       	</div>
 <?php	}?>
-<?php 	if(!$this->session->userdata('id'))
-		{ ?>
-		<div class="container">
-			<nav class="navbar navbar-inverse navbar-fixed-top">
-	      		<div class="container">
-		        	<div class="navbar-header">
-				        <a class="navbar-brand navbar-right" href="/users/load_login">Sign In</a>
-		        	</div>
-	      		</div>
-	      	</nav>
-      	</div>
-<?php  	} ?>
 			<form id="update" class="form-signin" action="/users/load_update"><button class="btn btn-lg btn-primary btn-block" type="submit">Update Account Information</button></form>
 		    <form class="form-signin" action="/users/load_update_password"><button class="btn btn-lg btn-primary btn-block" type="submit">Change Password</button></form>
 		    <?php if($this->session->userdata('admin_status') == 1)

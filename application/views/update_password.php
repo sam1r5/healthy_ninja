@@ -59,7 +59,7 @@
 				{ ?>
 				 	<span class='red_text'><?php echo $errors['current_password'];?></span> 
 <?php			} ?>	  
-		        <input type="password" name="current_password" class="form-control" placeholder="Current Password" required>
+		        <input type="password" name="current_password" class="form-control" required>
 
 		        <label>New Password:</label>
 <?php 			if(isset($errors['errors']))
@@ -70,14 +70,14 @@
 				{ ?>
 				 	<span class='red_text'><?php echo $errors['password'];?></span> 
 <?php			} ?>       
-		        <input type="password" name="password" class="form-control" placeholder="New Password" required>
+		        <input type="password" name="password" class="form-control" required>
 
 		        <label>Confirm New Password:</label>
 <?php 			if(isset($errors['confirm']))
 				{ ?>
 				 	<span class='red_text'><?php echo $errors['confirm'];?></span> 
 <?php			} ?> 
-		        <input type="password" name="confirm" class="form-control" placeholder="Confirm New Password" required> 
+		        <input type="password" name="confirm" class="form-control" required> 
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
 	      	</form>
     	</div>

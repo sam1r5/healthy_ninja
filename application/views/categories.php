@@ -16,6 +16,7 @@
 	<body>
 <?php   if($this->session->userdata('id'))
 		{ ?>
+		<h1>Welcome, <?php echo $this->session->userdata('name');?>!</h1>
 		<div class="container">
 			<nav class="navbar navbar-inverse navbar-fixed-top">
 	      		<div class="container">
@@ -31,26 +32,29 @@
 <?php	}?>
 <?php 	if(!$this->session->userdata('id'))
 		{ ?>
+		<h1>Welcome!</h1>
 		<div class="container">
 			<nav class="navbar navbar-inverse navbar-fixed-top">
 	      		<div class="container">
 		        	<div class="navbar-header">
+						<a class="navbar-brand navbar-right" href="/carts/cart">Cart</a>		        		
 				        <a class="navbar-brand navbar-right" href="/users/load_login">Sign In</a>
 		        	</div>
 	      		</div>
 	      	</nav>
       	</div>
 <?php  	} ?>
-	<h1>Welcome, <?php echo $this->session->userdata('name');?>!</h1>
 	<div class="container">
 		<?php foreach($products as $product) { ?>
-		<div class="containter">
+		<div class="category_images">
 			<img src="/assets/images/<?php echo $product['name'] ?>.jpg">
+			<div class="view">
 			<h3><?php echo $product['name'] ?></h3>
 			<form action="/Products/load_product_page" method="post">
 				<input type="hidden" name="product_id" value="<?php echo $product['id'] ?>">
 				<input type="Submit" name="view" value="View Product">
 			</form>
+			</div>
 		</div>
 		<?php } ?>
 	</div>

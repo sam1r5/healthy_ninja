@@ -2,7 +2,7 @@
 
 Class Product extends CI_Model
 {
-	/*this function will */
+	/*this function will get all products for admin dashboard*/
 	public function get_all_product()
 	{
 		$query = "SELECT * FROM products";
@@ -20,7 +20,7 @@ Class Product extends CI_Model
 	{
 		$query = "SELECT products.name as name, category, description, price, id 
 			FROM products
-			WHERE products.id =" . $prod_id;
+			WHERE products.id = '$prod_id'";
 			return $this->db->query($query)->row_array();
 	}
 	public function get_products_by_category($prod_cat)
