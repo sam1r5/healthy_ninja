@@ -39,7 +39,6 @@
 			<nav class="navbar navbar-inverse navbar-fixed-top">
 	      		<div class="container">
 		        	<div class="navbar-header">
-						<a class="navbar-brand navbar-right" href="/carts/cart">Cart</a>
 				        <a class="navbar-brand navbar-right" href="/users/load_login">Sign In</a>
 		        	</div>
 	      		</div>
@@ -54,6 +53,8 @@
 				<form action="/Carts/<?php echo $where_to_go ?>" method="post">
 					<input type="hidden" name="product_id" value="<?php echo $product_info['id'] ?>">
 					<input type="hidden" name="quantity" value="1">
+					<input type="hidden" name="price" value="<?php echo $product_info['price'] ?>">
+					<input type="hidden" name="name" value="<?php echo $product_info['name'] ?>">
 					<input type="Submit" name="add_cart" value="Add To Cart">
 				</form>
 			</div>
