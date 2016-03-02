@@ -93,3 +93,35 @@ p{
 .view{
 	text-align: center;
 }
+
+.product{
+	width: 40%;
+	height: auto;
+	text-align: center;
+}
+
+.product, .description, .review{
+	display: inline-block;
+}
+
+.description{
+	vertical-align: top;
+	margin-top: 30px;
+	width: 25%;
+}
+
+#product{
+	width: 35%;
+	margin-left: 32%;
+}
+
+.review{
+	vertical-align: top;
+	margin-top: 30px;
+	width: 20%;
+	margin-left: 6%;
+}
+
+.review h1{
+	text-align: center;
+}

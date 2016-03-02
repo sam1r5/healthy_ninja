@@ -9,8 +9,7 @@
 		<script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
-				// jQuery codes here
-			});
+				});
 		</script>
 	</head>
 	<body>
@@ -47,7 +46,7 @@
 
 <?php  	} ?>
 		<div class="container">
-			<div class="containter">
+			<div class="product">
 				<img src="/assets/images/<?php echo $product_info['name'] ?>.jpg">
 				<h3><?php echo $product_info['name'] ?></h3>
 				<form action="/Carts/<?php echo $where_to_go ?>" method="post">
@@ -55,9 +54,20 @@
 					<input type="hidden" name="quantity" value="1">
 					<input type="hidden" name="price" value="<?php echo $product_info['price'] ?>">
 					<input type="hidden" name="name" value="<?php echo $product_info['name'] ?>">
-					<input type="Submit" name="add_cart" value="Add To Cart">
+					<input id="product" class="btn btn-lg btn-primary btn-block" type="Submit" name="add_cart" value="Add To Cart">
 				</form>
 			</div>
+			<div class="description">
+				<h1>Description</h1>
+				<h3><?php echo $product_info['description'];?></h3>
+			</div>
+			<div class="review">
+				<h1>Reviews</h1>
+<?php foreach($reviews as $review) { ?>
+			<p><?php echo $review['first_name'] . " says:<br>" . $review['review'];?></p>
+
+<?php		} ?>
+			</div>		
 		</div>
 		<nav class="navbar navbar-inverse navbar-fixed-bottom">
 			<div class="navbar-bottom">

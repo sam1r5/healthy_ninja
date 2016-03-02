@@ -1,7 +1,8 @@
 <?php 
 
 class Reviews extends CI_Controller {
-	function add_review()
+	
+	public function add_review()
 	{
 		$this->load->model('Review');
 		$this->Review->add_review($this->input->post());
