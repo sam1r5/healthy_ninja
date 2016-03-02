@@ -35,6 +35,11 @@ class Carts extends CI_Controller
 		$this->load->model('Cart');
 		$this->Cart->add_product($this->input->post());
 	}
+	public function add_product_guest()
+	{
+		$this->load->model('Cart');
+		$this->Cart->add_product_guest($this->input->post());
+	}
 
 	public function update_quantity()
 	{
