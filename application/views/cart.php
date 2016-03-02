@@ -36,7 +36,9 @@ die();*/?>
 	</head>
 	<body>
 <?php   if($this->session->userdata('id'))
-		{ ?>
+		{ 
+			$pointer = "carts";
+			?>
 		<div class="container">
 			<nav class="navbar navbar-inverse navbar-fixed-top">
 	      		<div class="container">
@@ -50,7 +52,28 @@ die();*/?>
 	      	</nav>
       	</div>
 
-      	      	<table class="table table-hover" align-"center">
+
+
+<?php	}?>
+<?php 	if(!$this->session->userdata('id'))
+		{ 
+			$pointer = "guest_carts";
+			?>
+		<div class="container">
+			<nav class="navbar navbar-inverse navbar-fixed-top">
+	      		<div class="container">
+		        	<div class="navbar-header">
+						<a class="navbar-brand navbar-right" href="/carts/cart">Cart</a>
+				        <a class="navbar-brand navbar-right" href="/users/load_login">Sign In</a>
+		        	</div>
+	      		</div>
+	      	</nav>
+      	</div>
+
+
+
+<?php  	} ?>
+<table class="table table-hover" align-"center">
       		<thead>
       			<tr>
       				<td>Product Name</td>
@@ -73,7 +96,7 @@ die();*/?>
 						<td><?php echo "$".$item['price'] ?></td>
 						<td><?php echo "$".money_format('%i',$item[0]['total']) ?></td>
  						<td>
-	 						<form action="/carts/update_quantity" method="post" class="cart">
+	 						<form action="/<?php echo $pointer ?>/update_quantity" method="post" class="cart">
 	 							<input	type="hidden" name="product_id" value="<?= $item['id'] ?>">			
  								<select name="quantity" class='quantity'> 
  									<option></option>
@@ -91,7 +114,7 @@ die();*/?>
 							</form>
 						</td>
 						<td>
-							<form action="/carts/delete_item" method=post >
+							<form action="/<?php echo $pointer ?>/delete_item" method=post >
 								<input	type="hidden" name="product_id" value="<?= $item['id'] ?>">
 								<button type="submit" >Delete</button>
 							</form>
@@ -104,7 +127,7 @@ die();*/?>
       		<td>Total Cost: <?php echo "$".money_format('%i', $cost) ?></td>
       	</table>
       	<div class="container">
-      	<form action="/carts/payment" method="post" class="form-signin">
+      	<form action="/<?php echo $pointer ?>/payment" method="post" class="form-signin">
       		<h2 class="form-signin-heading">Shipping Address</h2>
                 <label>First Name:</label>
 <?php 		if(isset($errors['errors']['first_name']))
@@ -215,24 +238,6 @@ die();*/?>
 			  </div>
       	</form>
       	</div>
-
-<?php	}?>
-<?php 	if(!$this->session->userdata('id'))
-		{ ?>
-		<div class="container">
-			<nav class="navbar navbar-inverse navbar-fixed-top">
-	      		<div class="container">
-		        	<div class="navbar-header">
-						<a class="navbar-brand navbar-right" href="/carts/cart">Cart</a>
-				        <a class="navbar-brand navbar-right" href="/users/load_login">Sign In</a>
-		        	</div>
-	      		</div>
-	      	</nav>
-      	</div>
-
-
-
-<?php  	} ?>
 		<nav class="navbar navbar-inverse navbar-fixed-bottom">
 			<div class="navbar-bottom">
 				<a id="about" class="navbar-brand navbar-bottom" href="#">About Us</a>

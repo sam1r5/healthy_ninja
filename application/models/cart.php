@@ -80,6 +80,7 @@ class Cart extends CI_Model
 				'amount' => ($this->input->post('price') * $this->input->post('quantity'))
 
 				);
+		$for_update = $product[]
 		if($this->cart->contents('product_id') != $this->input->post('product_id'))
 		{	
 			$this->cart->insert($product);
@@ -99,12 +100,6 @@ class Cart extends CI_Model
 			$total += $products['amount'];
 		}
 		return $total;
-	}
-
-	public function delete_cart_guest()
-	{
-		$this->cart->destroy();
-		$this->session->sess_destroy();
 	}
 
 	public function get_guest_cart()
