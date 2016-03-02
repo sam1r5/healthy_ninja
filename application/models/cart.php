@@ -16,9 +16,22 @@ class Cart extends CI_Model
 
 	public function add_product($post)
 	{
-		$query = "INSERT INTO cart_relationships (quantity, product_id, cart_id, created_at, updated_at) VALUES (?,?,?,?,?)";
-		$values = array($post['quantity'], $post['product_id'], $post['cart_id'], date('Y-m-d, H:i:s'), date('Y-m-d, H:i:s'));
-		$this->db->query($query, $values);
+		$user_id = $this->session->userdata('id');
+		$query = "SELECT * FROM cart_relationships WHERE product_id = ? AND cart_id = ?";
+		$values = array($post['product_id'], $user_id);
+		$myresult = $this->db->query($query, $values)->result_array();
+		if($myresult)
+		{
+			$query = "UPDATE cart_relationships SET quantity = quantity + 1, updated_at = ? WHERE product_id = ?";
+			$values = array(date('Y-m-d, H:i:s'), $post['product_id']);
+			$this->db->query($query, $values);
+		}
+		else 
+		{
+			$query = "INSERT INTO cart_relationships (quantity, product_id, cart_id, created_at, updated_at) VALUES (?,?,?,?,?)";
+			$values = array($post['quantity'], $post['product_id'], $this->session->userdata('id'), date('Y-m-d, H:i:s'), date('Y-m-d, H:i:s'));
+			$this->db->query($query, $values);
+		}
 	}
 
 	public function update_quantity($post)

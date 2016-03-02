@@ -4,6 +4,12 @@ class Guest_carts extends CI_Controller
 
 	public function add_product()
 	{
+		if($this->session->userdata('guest_id') == null)
+		{
+			$this->load->model('Guest_cart');
+			$guest_id = $this->Guest_cart->add_guest();
+			$this->session->set_userdata('guest_id', $guest_id);
+		}
 		$this->load->model('Guest_cart');
 		$this->Guest_cart->add_product($this->input->post());
 		redirect('/products');
