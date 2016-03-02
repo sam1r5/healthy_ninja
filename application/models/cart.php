@@ -1,11 +1,6 @@
 <?php 
 class Cart extends CI_Model
 {
-	function __construct() 
-	{
-        parent::__construct();
-        $this->load->library('cart');
-    }
 	public function get_user_cart()
 	{
 		$id = $this->session->userdata('id');
