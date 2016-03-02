@@ -19,14 +19,35 @@ class Carts extends CI_Controller
 			//var_dump($data);
 			$this->load->view('/cart', $data);
 		}
-		else if($this->cart->contents() != null)
+		else if ($this->session->userdata('guest_id') == null)
 		{
-			$data['items'] = $this->cart->contents();
+			$this->load->model('Guest_cart');
+			$guest_id = $this->Guest_cart->add_guest();
+			$this->session->set_userdata('guest_id', $guest_id);
+			$data['items'] = [];
+			$data['cost'] = 0;
+			$data['user']['first_name'] = '';
+			$data['user']['last_name'] = '';
+			$data['user']['email'] = '';
+			$data['user']['billing_street'] = '';
+			$data['user']['billing_city'] = '';
+			$data['user']['billing_state'] = 'Select State';
+			$data['user']['billing_zip'] = '';
 			$this->load->view('/cart', $data);
 		}
 		else
 		{
-			$this->load->view('/cart');
+			$this->load->model('Guest_cart');
+			$data['items'] = $this->Guest_cart->item_price();
+			$data['cost'] = $this->Guest_cart->total_price();
+			$data['user']['first_name'] = '';
+			$data['user']['last_name'] = '';
+			$data['user']['email'] = '';
+			$data['user']['billing_street'] = '';
+			$data['user']['billing_city'] = '';
+			$data['user']['billing_state'] = 'Select State';
+			$data['user']['billing_zip'] = '';
+			$this->load->view('/cart', $data);
 		}
 	}
 
