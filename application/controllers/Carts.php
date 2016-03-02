@@ -1,12 +1,6 @@
 <?php 
 class Carts extends CI_Controller
 {
-	public function __construct()
-	{
-		parent::__construct();
-		//Load Library and model.
-		$this->load->library('cart');
-	}
 	public function cart()
 	{
 		if($this->session->userdata('id') !== null)
@@ -55,11 +49,7 @@ class Carts extends CI_Controller
 	{
 		$this->load->model('Cart');
 		$this->Cart->add_product($this->input->post());
-	}
-	public function add_product_guest()
-	{
-		$this->load->model('Cart');
-		$this->Cart->add_product_guest($this->input->post());
+		redirect('/products');
 	}
 
 	public function update_quantity()

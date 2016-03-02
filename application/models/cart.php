@@ -70,27 +70,6 @@ class Cart extends CI_Model
 		$this->db->query($query, $values);
 	}
 
-	public function add_product_guest()
-	{
-		$product = array(
-				'product_id' => $this->input->post('product_id'),
-				'name' => $this->input->post('product_name'),
-				'quantity' => $this->input->post('quantity'),
-				'price' => $this->input->post('price'),
-				'amount' => ($this->input->post('price') * $this->input->post('quantity'))
-
-				);
-		$for_update = $product[]
-		if($this->cart->contents('product_id') != $this->input->post('product_id'))
-		{	
-			$this->cart->insert($product);
-		}
-		else 
-		{
-			$this->cart->update($product);
-		}
-	}
-
 	public function total_price_guest()
 	{
 		$products = $this->get_guest_cart();

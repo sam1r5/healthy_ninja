@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <?php $errors = $this->session->flashdata(); 
-/*var_dump($user);
-die();*/?>
+?>
 <html lang="en">
 	<head>
 		<meta charset="utf-8"/>

@@ -15,7 +15,7 @@
 	<body>
 <?php   if($this->session->userdata('id'))
 		{ 
-			$where_to_go = 'add_product';
+			$where_to_go = '/Carts/add_product';
 			?>
 		<div class="container">
 			<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -32,7 +32,7 @@
 <?php	}?>
 <?php 	if(!$this->session->userdata('id'))
 		{ 
-			$where_to_go = 'add_product_guest';
+			$where_to_go = '/Guest_carts/add_product';
 			?>
 		<div class="container">
 			<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -49,11 +49,11 @@
 			<div class="product">
 				<img src="/assets/images/<?php echo $product_info['name'] ?>.jpg">
 				<h3><?php echo $product_info['name'] ?></h3>
-				<form action="/Carts/<?php echo $where_to_go ?>" method="post">
+				<form action="<?php echo $where_to_go ?>" method="post">
 					<input type="hidden" name="product_id" value="<?php echo $product_info['id'] ?>">
 					<input type="hidden" name="quantity" value="1">
 					<input type="hidden" name="price" value="<?php echo $product_info['price'] ?>">
-					<input type="hidden" name="name" value="<?php echo $product_info['name'] ?>">
+					<!-- <input type="hidden" name="name" value="<?php echo $product_info['name'] ?>"> -->
 					<input id="product" class="btn btn-lg btn-primary btn-block" type="Submit" name="add_cart" value="Add To Cart">
 				</form>
 			</div>

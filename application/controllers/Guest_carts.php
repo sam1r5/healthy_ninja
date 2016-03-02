@@ -6,6 +6,7 @@ class Guest_carts extends CI_Controller
 	{
 		$this->load->model('Guest_cart');
 		$this->Guest_cart->add_product($this->input->post());
+		redirect('/products');
 	}
 
 	public function update_quantity()

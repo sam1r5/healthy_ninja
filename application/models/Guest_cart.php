@@ -7,6 +7,9 @@ class Guest_cart extends CI_Model
 		$this->db->query($query);
 		$guest_id = $this->db->query("SELECT LAST_INSERT_ID()")->row_array();
 		$guest_id = $guest_id['LAST_INSERT_ID()'];
+		$query = "INSERT INTO guest_carts (guest_id, created_at, updated_at) VALUES (?, now(), now())";
+		$values = array($guest_id);
+		$this->db->query($query, $values);
 		return $guest_id;
 
 	}
@@ -28,7 +31,7 @@ class Guest_cart extends CI_Model
 	public function get_user_cart()
 	{
 		$id = $this->session->userdata('guest_id');
-		$query = "SELECT guests.first_name, guests.last_name, products.name, guest_cart_relationships.quantity, products.id, products.price FROM guests LEFT JOIN guest_carts On guests.id = guest_carts.guest_id LEFT JOIN guest_cart_relationships on guest_cart_relationships.guest_cart_id = guest_carts.id LEFT JOIN products on guest_cart_relationships.product_id = products.id WHERE guests.id = ?";
+		$query = "SELECT products.name, guest_cart_relationships.quantity, products.id, products.price FROM guests LEFT JOIN guest_carts On guests.id = guest_carts.guest_id LEFT JOIN guest_cart_relationships on guest_cart_relationships.guest_cart_id = guest_carts.id LEFT JOIN products on guest_cart_relationships.product_id = products.id WHERE guest_carts.id = ?";
 		$values = array($id);	
 		return $this->db->query($query, $values)->result_array();
 	}
@@ -71,6 +74,25 @@ class Guest_cart extends CI_Model
 	{
 		$query = "DELETE from guest_cart_relationships where guest_cart_id = ?";
 		$values = array($this->session->userdata('guest_id'));
+		$this->db->query($query, $values);
+	}
+	public function add_product($post)
+	{
+		$query = "INSERT INTO guest_cart_relationships (quantity, product_id, guest_cart_id, created_at, updated_at) VALUES (?,?,?,?,?)";
+		$values = array($post['quantity'], $post['product_id'], $this->session->userdata('guest_id'), date('Y-m-d, H:i:s'), date('Y-m-d, H:i:s'));
+		$this->db->query($query, $values);
+	}
+	public function update_quantity($post)
+	{
+		$query = "UPDATE guest_cart_relationships SET 
+		quantity = ?  WHERE product_id = ? AND guest_cart_id in(SELECT id from guest_carts WHERE guest_cart_id = ?)";
+		$values = array($post['quantity'], $post["product_id"], $this->session->userdata('guest_id'));
+		$this->db->query($query, $values);
+	}
+	public function delete_item($post)
+	{
+		$query = "DELETE FROM guest_cart_relationships WHERE product_id = ?";
+		$values = array($post['product_id']);
 		$this->db->query($query, $values);
 	}
 }
