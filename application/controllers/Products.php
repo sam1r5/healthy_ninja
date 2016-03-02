@@ -70,9 +70,9 @@ class Products extends CI_Controller
 		//check to see if the user is an admin 
 		// if($this->session->userdata('admin') == 'admin')
 		// {
-			$this->load->model("Product");
-			$this->Product->add_product($this->input->post());
-			redirect('/users/load_admin_dashboard');
+			// $this->load->model("Product");
+			// $this->Product->add_product($this->input->post());
+			// redirect('/users/load_admin_dashboard');
 		// }
 	}
 	// Function below is taking get info from the link the user clicks on the category view. We pass that to the models to get the product info and reviews.
