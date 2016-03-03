@@ -78,7 +78,14 @@ class Products extends CI_Controller
 	// Function below is taking get info from the link the user clicks on the category view. We pass that to the models to get the product info and reviews.
 	public function load_product_page()
 	{
-		$post = $this->input->post('product_id');
+		if($this->input->post())
+		{
+			$post = $this->input->post('product_id');
+		}
+		else
+		{
+			$post = $this->session->userdata['product_id'];
+		}
 		$this->load->model('Product');
 		$product_info['product_info'] = $this->Product->get_product($post);
 		$this->load->model('Review');
@@ -99,7 +106,7 @@ class Products extends CI_Controller
 			$avg = 'There are no ratings for this product';
 			$product_info['review_content'] = 'There are no reviews for this product.';
 		}
-		$product_info['rating'] = $avg;
+		$product_info['rating'] = round($avg, 2);
 		$this->load->view('/product', $product_info);
 	}
 	public function load_success_page($data)
