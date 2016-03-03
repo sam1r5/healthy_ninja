@@ -10,10 +10,10 @@
 		<script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
-				$(':radio').change(
-				  function() {
+				$(':radio').change(function(){
 				    $('.choice').text($(this).val() + ' stars');
-				  });
+
+				});
 			});
 		</script>
 	</head>
@@ -66,7 +66,11 @@
 				<h1>Description</h1>
 				<h3><?php echo $product_info['description'];?></h3>
 				<h1>Rating</h1>
+<<<<<<< HEAD
 					<h3><?php echo $rating;?></h3>
+=======
+				<h3><?php echo $rating;?> / 5</h3>
+>>>>>>> 308b5fa2377f1824d64cfb92feefd041b78fed5c
 			</div>
 			<div class="review">
 				<h1>Reviews</h1>
@@ -77,6 +81,7 @@
 <?php		} ?>
 			<!-- this will insert reviews-->
 <?php 		if($this->session->userdata('id')) { ?> 
+<<<<<<< HEAD
 				<p class="write_review"><span class="bold">Write a review</span></p>
 				<span class="star-rating">
 				  <input style="font-size:0;" type="radio" name="rating" value="1"><i></i>
@@ -84,9 +89,18 @@
 				  <input style="font-size:0;" type="radio" name="rating" value="3"><i></i>
 				  <input style="font-size:0;" type="radio" name="rating" value="4"><i></i>
 				  <input style="font-size:0;" type="radio" name="rating" value="5"><i></i>
+=======
+				<h1 class="write_review">Write a review</h1>
+				<p><strong class="choice">Choose a rating</strong></p>
+				<span id="star-rating">
+				  <input type="radio" name="rating" value="1"><i></i>
+				  <input type="radio" name="rating" value="2"><i></i>
+				  <input type="radio" name="rating" value="3"><i></i>
+				  <input type="radio" name="rating" value="4"><i></i>
+				  <input type="radio" name="rating" value="5"><i></i>
+>>>>>>> 308b5fa2377f1824d64cfb92feefd041b78fed5c
 				</span>
-				<strong class="choice">Choose a rating</strong>
-				<textarea name="review" rows="8" cols="60"></textarea>
+				<textarea name="review" rows="8" cols="60" required></textarea>
 				<input class="review_submit "type="submit" value="Submit">
 <?php 		} ?>
 			</form>
