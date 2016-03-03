@@ -66,9 +66,7 @@
 				<h1>Description</h1>
 				<h3><?php echo $product_info['description'];?></h3>
 				<h1>Rating</h1>
-<?php 		if($rating) { ?>
 					<h3><?php echo $rating;?></h3>
-<?php 		} ?>
 			</div>
 			<div class="review">
 				<h1>Reviews</h1>
@@ -80,12 +78,12 @@
 			<!-- this will insert reviews-->
 <?php 		if($this->session->userdata('id')) { ?> 
 				<p class="write_review"><span class="bold">Write a review</span></p>
-				<span id="star-rating">
-				  <input type="radio" name="rating" value="1"><i></i>
-				  <input type="radio" name="rating" value="2"><i></i>
-				  <input type="radio" name="rating" value="3"><i></i>
-				  <input type="radio" name="rating" value="4"><i></i>
-				  <input type="radio" name="rating" value="5"><i></i>
+				<span class="star-rating">
+				  <input style="font-size:0;" type="radio" name="rating" value="1"><i></i>
+				  <input style="font-size:0;" type="radio" name="rating" value="2"><i></i>
+				  <input style="font-size:0;" type="radio" name="rating" value="3"><i></i>
+				  <input style="font-size:0;" type="radio" name="rating" value="4"><i></i>
+				  <input style="font-size:0;" type="radio" name="rating" value="5"><i></i>
 				</span>
 				<strong class="choice">Choose a rating</strong>
 				<textarea name="review" rows="8" cols="60"></textarea>
