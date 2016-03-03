@@ -57,6 +57,7 @@ class Guest_carts extends CI_Controller
 		}
 		else
 		{
+			$this->Guest_cart->add_guest_information($post);
 			$amount = ($this->Guest_cart->total_price()*100);
 
 			$stripe = array(

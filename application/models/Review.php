@@ -7,8 +7,8 @@ Class Review extends CI_Model
 	{
 		$id = $this->session->userdata('id'); // Redundant but I hate putting '$this->blah blah' directly in a query.
 		$query = "INSERT INTO reviews (content, rating, user_id, product_id, created_at, updated_at) 
-		VALUES (?,?,?,now(),now()) WHERE id = $id;";
-			$values = array($post['review'], $post['rating'], $userid, $post['product_id']);
+		VALUES (?,?,?,?, now(),now())";
+			$values = array($post['content'], $post['rating'], $id, $post['product_id']);
 			$this->db->query($query, $values);
 	}
 	// This function will pull reviews for a particular product. Need to pass the product id from the view to controller to here as $prod_id.

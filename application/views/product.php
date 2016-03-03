@@ -69,6 +69,7 @@
 			</div>
 			<div class="review">
 				<h1>Reviews</h1>
+				<h3><?php echo $review_content; ?></h3>
 			<form action="/reviews/add_review" method="post">
 <?php foreach($reviews as $review) { ?>
 			<p><span class="bold"><?php echo $review['first_name'] . " says:<br></span>" . $review['review'];?></p>
@@ -85,7 +86,8 @@
 				  <input type="radio" name="rating" value="4"><i></i>
 				  <input type="radio" name="rating" value="5"><i></i>
 				</span>
-				<textarea name="review" rows="8" cols="60" required></textarea>
+				<textarea name="content" rows="8" cols="60" required></textarea>
+				<input type="hidden" name="product_id" value="<?php echo $product_info['id'] ?>">
 				<input class="review_submit "type="submit" value="Submit">
 <?php 		} ?>
 			</form>

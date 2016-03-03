@@ -93,9 +93,11 @@ class Products extends CI_Controller
 		if ($count != 0)
 		{
 		$avg = $sum/$count . " / 5";
+		$product_info['review_content'] = "";
 		}
 		else {
 			$avg = 'There are no ratings for this product';
+			$product_info['review_content'] = 'There are no reviews for this product.';
 		}
 		$product_info['rating'] = $avg;
 		$this->load->view('/product', $product_info);

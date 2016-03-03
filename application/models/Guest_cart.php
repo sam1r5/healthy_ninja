@@ -108,6 +108,12 @@ class Guest_cart extends CI_Model
 		$values = array($post['product_id']);
 		$this->db->query($query, $values);
 	}
+	public function add_guest_information($post)
+	{
+		$query = "UPDATE guests SET first_name = ?, last_name = ?, email = ?, billing_street = ?, billing_city = ?, billing_state = ?, billing_zip = ?, updated_at = ? WHERE id = ?" ;
+		$values = array($post['first_name'],$post['last_name'],$post['email'],$post['billing_street'],$post['billing_city'],$post['billing_state'],$post['billing_zip'],date('Y,m,d, H:i:s'), $this->session->userdata('guest_id'));
+		$this->db->query($query, $values);
+	}
 }
 
  ?>
