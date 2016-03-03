@@ -49,18 +49,15 @@ class Guest_carts extends CI_Controller
 			$data = $this->form_validation->error_array();
 			$this->session->set_flashdata('errors', $data);
 			$this->load->model('Guest_cart');
-			$this->load->model('Guest');
-			$data['user'] = $this->Guest->get_user($this->session->userdata('guest_id'));
+			$data['user'] = [];
 			$data['items'] = $this->Guest_cart->item_price();
 			$data['cost'] = $this->Guest_cart->total_price();
-			var_dump($data);
-			die('in the wrong place');
 			$this->load->view('/cart', $data);
 			
 		}
 		else
 		{
-			$amount = ($this->Cart->total_price()*100);
+			$amount = ($this->Guest_cart->total_price()*100);
 
 			$stripe = array(
 			  "secret_key"      => "sk_test_SMEWYjteWylw6ogtVSEaKP8a",

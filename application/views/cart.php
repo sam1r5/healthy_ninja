@@ -133,34 +133,34 @@
 			{ ?>
 			 	<span class='red_text'><?php echo $errors['errors']['first_name'];?></span> 
 <?php		} ?>    
-		        <input type="text" name="first_name" class="form-control" placeholder="First Name" value="<?php echo $user['first_name'] ?>" required>
+		        <input type="text" name="first_name" class="form-control" placeholder="First Name" value="<?php if(isset($user['first_name'])){echo $user['first_name'];} ?>" required>
 		        <label>Last Name:</label>
 <?php 		if(isset($errors['errors']['last_name']))
 			{ ?>
 			 	<span class='red_text'><?php echo $errors['errors']['last_name'];?></span> 
 <?php		} ?>    
-		        <input type="text" name="last_name" class="form-control" placeholder="Last Name" value="<?php echo $user['last_name'] ?>" required>
+		        <input type="text" name="last_name" class="form-control" placeholder="Last Name" value="<?php if(isset($user['first_name'])){echo $user['last_name'];} ?>" required>
 		        <label>Email:</label>
 <?php 		if(isset($errors['errors']['email']))
 			{ ?>
 			 	<span class='red_text'><?php echo $errors['errors']['email'];?></span> 
 <?php		} ?>    
-		        <input type="email" name="email" class="form-control" placeholder="Email" value="<?php echo $user['email'] ?>" required>
+		        <input type="email" name="email" class="form-control" placeholder="Email" value="<?php if(isset($user['email'])){echo $user['email'];} ?>" required>
 		        <label>Street Address:</label>
 <?php 		if(isset($errors['errors']['billing_street']))
 			{ ?>
 			 	<span class='red_text'><?php echo $errors['errors']['billing_street'];?></span> 
 <?php		} ?> 			        
-		        <input type="text" name="billing_street" class="form-control" placeholder="Street Address" value="<?php echo $user['billing_street'] ?>"required>
+		        <input type="text" name="billing_street" class="form-control" placeholder="Street Address" value="<?php if(isset($user['billing_street'])){echo $user['billing_street'] ;} ?>"required>
 		        <label>City:</label>
 <?php 		if(isset($errors['errors']['billing_city']))
 			{ ?>
 			 	<span class='red_text'><?php echo $errors['errors']['billing_city'];?></span> 
 <?php		} ?>  	
-		        <input type="text" name="billing_city" class="form-control" value="<?php echo $user['billing_city'] ?>" placeholder="City"> 
+		        <input type="text" name="billing_city" class="form-control" value="<?php if(isset($user['billing_city'])){echo $user['billing_city'] ;}?>" placeholder="City"> 
 		        <label>State:</label>
 				<select class="form-control" name="billing_state" required>
-					<option selected><?php echo $user['billing_state'];?></option>
+					<option selected><?php if(isset($user['billing_state'])){echo $user['billing_state'];;}?></option>
 					<option value="Alabama">Alabama</option>
 					<option value="Alaska">Alaska</option>
 					<option value="Arizona">Arizona</option>
@@ -218,7 +218,7 @@
 			{ ?>
 			 	<span class='red_text'><?php echo $errors['errors']['billing_zip'];?></span> 
 <?php		} ?>   	
-		        <input type="text" pattern="[0-9]{5}" name="billing_zip" class="form-control" value="<?php echo $user['billing_zip'] ?>" placeholder="Zip Code" oninvalid="setCustomValidity('Please enter a valid 5 digit zip code')">
+		        <input type="text" pattern="[0-9]{5}" name="billing_zip" class="form-control" value="<?php if(isset($user['billing_zip'])){echo $user['billing_zip'];} ?>" placeholder="Zip Code" oninvalid="setCustomValidity('Please enter a valid 5 digit zip code')">
 		        <div class='<?php 
 		        if(floatval($cost) == 0)
 		        {

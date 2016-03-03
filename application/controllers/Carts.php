@@ -109,8 +109,6 @@ class Carts extends CI_Controller
 		}
 		else
 		{
-			if($this->session->userdata('id') !== "0")
-			{
 				$amount = ($this->Cart->total_price()*100);
 
 				$stripe = array(
@@ -136,9 +134,7 @@ class Carts extends CI_Controller
 
 				$this->load->model('Cart');
 				$this->Cart->payment();
-				die('its ending');
 				$this->load->view('/order_confirmation');
-			}
 		}
 	}
 
