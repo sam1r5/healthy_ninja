@@ -92,7 +92,7 @@ class Products extends CI_Controller
 		}
 		if ($count != 0)
 		{
-		$avg = $sum/$count;
+		$avg = $sum/$count . " / 5";
 		}
 		else {
 			$avg = 'There are no ratings for this product';
