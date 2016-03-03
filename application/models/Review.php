@@ -5,9 +5,9 @@ Class Review extends CI_Model
 	// Function to add a review. We need to include a hidden input on the product page to pass over the product id as part of the post when the user submits a review.
 	public function add_review($post)
 	{
-		$userid = $this->session->userdata('user'['id']); // Redundant but I hate putting '$this->blah blah' directly in a query.
+		$id = $this->session->userdata('id'); // Redundant but I hate putting '$this->blah blah' directly in a query.
 		$query = "INSERT INTO reviews (content, rating, user_id, product_id, created_at, updated_at) 
-		VALUES (?,?,?,now(),now())";
+		VALUES (?,?,?,now(),now()) WHERE id = $id;";
 			$values = array($post['review'], $post['rating'], $userid, $post['product_id']);
 			$this->db->query($query, $values);
 	}

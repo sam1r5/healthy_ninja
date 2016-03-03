@@ -5,11 +5,16 @@
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="/assets/stylesheets/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="/assets/stylesheets/index.css">
+		<link rel="stylesheet" type="text/css" href="/assets/stylesheets/rating.css">
 		<meta name="description" content="insert description"/>
 		<script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
-				});
+				$(':radio').change(
+				  function() {
+				    $('.choice').text($(this).val() + ' stars');
+				  });
+			});
 		</script>
 	</head>
 	<body>
@@ -60,13 +65,33 @@
 			<div class="description">
 				<h1>Description</h1>
 				<h3><?php echo $product_info['description'];?></h3>
+				<h1>Rating</h1>
+<?php 		if($rating) { ?>
+					<h3><?php echo $rating;?></h3>
+<?php 		} ?>
 			</div>
 			<div class="review">
 				<h1>Reviews</h1>
+			<form action="/reviews/add_review" method="post">
 <?php foreach($reviews as $review) { ?>
-			<p><?php echo $review['first_name'] . " says:<br>" . $review['review'];?></p>
+			<p><span class="bold"><?php echo $review['first_name'] . " says:<br></span>" . $review['review'];?></p>
 
 <?php		} ?>
+			<!-- this will insert reviews-->
+<?php 		if($this->session->userdata('id')) { ?> 
+				<p class="write_review"><span class="bold">Write a review</span></p>
+				<span id="star-rating">
+				  <input type="radio" name="rating" value="1"><i></i>
+				  <input type="radio" name="rating" value="2"><i></i>
+				  <input type="radio" name="rating" value="3"><i></i>
+				  <input type="radio" name="rating" value="4"><i></i>
+				  <input type="radio" name="rating" value="5"><i></i>
+				</span>
+				<strong class="choice">Choose a rating</strong>
+				<textarea name="review" rows="8" cols="60"></textarea>
+				<input class="review_submit "type="submit" value="Submit">
+<?php 		} ?>
+			</form>
 			</div>		
 		</div>
 		<nav class="navbar navbar-inverse navbar-fixed-bottom">

@@ -120,6 +120,5 @@ class Cart extends CI_Model
 		$this->delete_cart();
 
 	}
-	// Just a change
 }
  ?>

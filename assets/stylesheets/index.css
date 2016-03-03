@@ -125,3 +125,11 @@ p{
 .review h1{
 	text-align: center;
 }
+
+.bold{
+	font-weight: bold;
+}
+
+.write_review{
+	margin-top: 30px;
+}
