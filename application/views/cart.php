@@ -50,9 +50,6 @@
 	      		</div>
 	      	</nav>
       	</div>
-
-
-
 <?php	}?>
 <?php 	if(!$this->session->userdata('id'))
 		{ 
@@ -64,6 +61,7 @@
 		        	<div class="navbar-header">
 						<a class="navbar-brand navbar-right" href="/carts/cart">Cart</a>
 				        <a class="navbar-brand navbar-right" href="/users/load_login">Sign In</a>
+				        <a class="navbar-brand navbar-right" href="/products/index">Home</a>				        
 		        	</div>
 	      		</div>
 	      	</nav>

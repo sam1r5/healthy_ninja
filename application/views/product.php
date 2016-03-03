@@ -43,6 +43,7 @@
 	      		<div class="container">
 		        	<div class="navbar-header">
 				        <a class="navbar-brand navbar-right" href="/users/load_login">Sign In</a>
+						<a class="navbar-brand navbar-right" href="/products/index">Home</a>
 		        	</div>
 	      		</div>
 	      	</nav>
