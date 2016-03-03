@@ -123,7 +123,7 @@
  					}
   ?>
       		</tbody>
-      		<td>Total Cost: <?php echo "$".money_format('%i', $cost) ?></td>
+      		<td>Total Cost: <?php echo "$".round($cost, 2, PHP_ROUND_HALF_UP) ?></td>
       	</table>
       	<div class="container">
       	<form action="/<?php echo $pointer ?>/payment" method="post" class="form-signin">
