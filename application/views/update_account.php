@@ -31,18 +31,6 @@
 	      	</nav>
       	</div>
 <?php	}?>
-<?php 	if(!$this->session->userdata('id'))
-		{ ?>
-		<div class="container">
-			<nav class="navbar navbar-inverse navbar-fixed-top">
-	      		<div class="container">
-		        	<div class="navbar-header">
-				        <a class="navbar-brand navbar-right" href="/users/load_login">Sign In</a>
-		        	</div>
-	      		</div>
-	      	</nav>
-      	</div>
-<?php  	} ?>
 		<div class="container">
 	      	<form class="form-signin" action="/Users/update" method="post">
 		        <h2 class="form-signin-heading">Update Information</h2>

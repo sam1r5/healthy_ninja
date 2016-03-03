@@ -12,7 +12,6 @@
 			$(document).ready(function(){
 				$(':radio').change(function(){
 				    $('.choice').text($(this).val() + ' stars');
-
 				});
 			});
 		</script>
@@ -44,6 +43,7 @@
 	      		<div class="container">
 		        	<div class="navbar-header">
 				        <a class="navbar-brand navbar-right" href="/users/load_login">Sign In</a>
+						<a class="navbar-brand navbar-right" href="/products/index">Home</a>
 		        	</div>
 	      		</div>
 	      	</nav>
