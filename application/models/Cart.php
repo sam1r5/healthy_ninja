@@ -96,6 +96,7 @@ class Cart extends CI_Model
 
 	public function payment()
 	{
+
 		//update the orders table
 		$total = $this->total_price();
 		$products = $this->item_price();
