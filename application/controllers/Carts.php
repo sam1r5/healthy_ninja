@@ -92,13 +92,6 @@ class Carts extends CI_Controller
 				$data['user'] = $this->User->get_user($this->session->userdata('id'));
 				$data['items'] = $this->Cart->item_price();
 				$data['cost'] = $this->Cart->total_price();
-				var_dump($data);
-				die('in the wrong place');
-				$this->load->view('/cart', $data);
-			}
-			else if($this->cart->contents() != null)
-			{
-				$data['items'] = $this->cart->contents();
 				$this->load->view('/cart', $data);
 			}
 			else

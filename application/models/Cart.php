@@ -68,7 +68,7 @@ class Cart extends CI_Model
 		{
 			$cost += $items[$i][0]['total'];
 		}
-		return money_format('%i', $cost);
+		return round($cost, 2, PHP_ROUND_HALF_UP);
 	}
 
 	public function delete_cart()
@@ -112,7 +112,7 @@ class Cart extends CI_Model
 		{
 			$quantity = $products[$i]['quantity'];
 			$price = $products[$i]['price'];
-			$total = money_format('%i', floatval($products[$i][0]['total']));
+			$total = round($products[$i][0]['total'], 2, PHP_ROUND_HALF_UP);
 			$product_id = $products[$i]['id'];
 			$values = array($product_id, $order_id, $quantity, $price, $total,date("Y-m-d, H:i:s"), date("Y-m-d, H:i:s"));
 			$this->db->query($query, $values);
