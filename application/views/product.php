@@ -70,7 +70,7 @@
 			</div>
 			<div class="review">
 				<h1>Reviews</h1>
-				<h3><?php echo $review_content; ?></h3>
+				<p><?php echo $review_content; ?></p>
 			<form action="/reviews/add_review" method="post">
 <?php foreach($reviews as $review) { ?>
 			<p><span class="bold"><?php echo $review['first_name'] . " says:<br></span>" . $review['review'];?></p>

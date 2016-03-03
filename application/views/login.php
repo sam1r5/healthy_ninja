@@ -62,7 +62,7 @@
 <?php		} ?>	
             <input type="password" name="password" class="form-control" placeholder="Password" required>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-        	<p>Can't remember your password?<a href="/users/load_registration"> Click here</a></p>
+<!--         	<p>Can't remember your password?<a href="/users/load_registration"> Click here</a></p> -->
         	<p>Don't have an account?<a href="/users/load_registration"> Register here</a></p>
           </form>
     	</div>

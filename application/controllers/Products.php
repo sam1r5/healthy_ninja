@@ -106,12 +106,12 @@ class Products extends CI_Controller
 		{
 		$avg = $sum/$count . " / 5";
 		$product_info['review_content'] = "";
+		$product_info['rating'] = round($avg, 2);
 		}
 		else {
-			$avg = 'There are no ratings for this product';
+			$product_info['rating'] = 'There are no ratings for this product';
 			$product_info['review_content'] = 'There are no reviews for this product.';
 		}
-		$product_info['rating'] = round($avg, 2);
 		$this->load->view('/product', $product_info);
 	}
 	public function load_success_page($data)
