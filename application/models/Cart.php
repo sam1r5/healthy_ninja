@@ -1,11 +1,6 @@
 <?php 
 class Cart extends CI_Model
 {
-	function __construct() 
-	{
-        parent::__construct();
-        $this->load->library('cart');
-    }
 	public function get_user_cart()
 	{
 		$id = $this->session->userdata('id');
@@ -16,9 +11,22 @@ class Cart extends CI_Model
 
 	public function add_product($post)
 	{
-		$query = "INSERT INTO cart_relationships (quantity, product_id, cart_id, created_at, updated_at) VALUES (?,?,?,?,?)";
-		$values = array($post['quantity'], $post['product_id'], $post['cart_id'], date('Y-m-d, H:i:s'), date('Y-m-d, H:i:s'));
-		$this->db->query($query, $values);
+		$user_id = $this->session->userdata('id');
+		$query = "SELECT * FROM cart_relationships WHERE product_id = ? AND cart_id = ?";
+		$values = array($post['product_id'], $user_id);
+		$myresult = $this->db->query($query, $values)->result_array();
+		if($myresult)
+		{
+			$query = "UPDATE cart_relationships SET quantity = quantity + 1, updated_at = ? WHERE product_id = ?";
+			$values = array(date('Y-m-d, H:i:s'), $post['product_id']);
+			$this->db->query($query, $values);
+		}
+		else 
+		{
+			$query = "INSERT INTO cart_relationships (quantity, product_id, cart_id, created_at, updated_at) VALUES (?,?,?,?,?)";
+			$values = array($post['quantity'], $post['product_id'], $this->session->userdata('id'), date('Y-m-d, H:i:s'), date('Y-m-d, H:i:s'));
+			$this->db->query($query, $values);
+		}
 	}
 
 	public function update_quantity($post)
@@ -70,26 +78,6 @@ class Cart extends CI_Model
 		$this->db->query($query, $values);
 	}
 
-	public function add_product_guest()
-	{
-		$product = array(
-				'product_id' => $this->input->post('product_id'),
-				'name' => $this->input->post('product_name'),
-				'quantity' => $this->input->post('quantity'),
-				'price' => $this->input->post('price'),
-				'amount' => ($this->input->post('price') * $this->input->post('quantity'))
-
-				);
-		if($this->cart->contents('product_id') != $this->input->post('product_id'))
-		{	
-			$this->cart->insert($product);
-		}
-		else 
-		{
-			$this->cart->update($product);
-		}
-	}
-
 	public function total_price_guest()
 	{
 		$products = $this->get_guest_cart();
@@ -99,12 +87,6 @@ class Cart extends CI_Model
 			$total += $products['amount'];
 		}
 		return $total;
-	}
-
-	public function delete_cart_guest()
-	{
-		$this->cart->destroy();
-		$this->session->sess_destroy();
 	}
 
 	public function get_guest_cart()
@@ -137,5 +119,6 @@ class Cart extends CI_Model
 		$this->delete_cart();
 
 	}
+	// Just a change
 }
  ?>
