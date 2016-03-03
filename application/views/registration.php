@@ -132,8 +132,6 @@
 			 	<span class='red_text'><?php echo $errors['billing_zip'];?></span> 
 <?php		} ?>   	
 		        <input type="text" pattern="[0-9]{5}" name="billing_zip" class="form-control" placeholder="Zip Code" oninvalid="setCustomValidity('Please enter a valid 5 digit zip code')">
-		        <div class="checkbox">
-		        </div>
 		        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
 	      	</form>
     	</div>

@@ -6,9 +6,8 @@
 		<meta charset="utf-8"/>
 		<title>Cart</title>
 		<link rel="stylesheet" type="text/css" href="/assets/stylesheets/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/assets/stylesheets/signin.css">
 		<link rel="stylesheet" type="text/css" href="/assets/stylesheets/index.css">
-		<link rel="stylesheet" type="text/css" href="/assets/stylesheets/cart.css">
-		<link rel="stylesheet" type="text/css" href="style.css">
 		<meta name="description" content="insert description"/>
 		<script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
 		<script type="text/javascript">
@@ -90,8 +89,8 @@
 	      			<tr>
  						<td><?php echo $item['name'] ?></td>
  						<td><?php echo $item['quantity'] ?></td>
-						<td><?php echo "$".$item['price'] ?></td>
-						<td><?php echo "$".money_format('%i',$item[0]['total']) ?></td>
+						<td><?php echo "$".round($item['price'], 2, PHP_ROUND_HALF_UP) ?></td>
+						<td><?php echo "$".round($item[0]['total'], 2, PHP_ROUND_HALF_UP) ?></td>
  						<td>
 	 						<form action="/<?php echo $pointer ?>/update_quantity" method="post" class="cart">
 	 							<input	type="hidden" name="product_id" value="<?= $item['id'] ?>">			
@@ -124,7 +123,7 @@
       		<td>Total Cost: <?php echo "$".money_format('%i', $cost) ?></td>
       	</table>
       	<div class="container">
-      	<form action="/<?php echo $pointer ?>/payment" method="post" class="form-signin">
+      	<form class="form-signin" action="/<?php echo $pointer ?>/payment" method="post">
       		<h2 class="form-signin-heading">Shipping Address</h2>
                 <label>First Name:</label>
 <?php 		if(isset($errors['errors']['first_name']))
