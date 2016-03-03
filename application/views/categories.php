@@ -9,8 +9,14 @@
 		<script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
-				// jQuery codes here
-				});
+				$('li').click(function(){
+					$.ajax({
+						url: "<?php echo $destination ?>"
+					}).done(function(){
+				})
+			})
+
+			});
 		</script>
 	</head>
 	<body>
@@ -58,6 +64,14 @@
 			</div>
 		</div>
 		<?php } ?>
+	</div>
+	<div class="container">
+		      		<ol style="display: inline-block;">
+		      			<?php for($i = 1; $i <= $count; $i++)
+		      			{ ?>
+		      			<a href="<?php echo $destination . $i ?>"><li></li></a>
+		      			<?php } ?>
+		      		</ol>
 	</div>
 		<nav class="navbar navbar-inverse navbar-fixed-bottom">
 			<div class="navbar-bottom">

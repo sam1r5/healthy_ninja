@@ -13,13 +13,15 @@ class Products extends CI_Controller
 
 	//this will load the category page with the correct data using post data. Thus a form must be wrapped around the link with a hidden input type.
 	//It will also require the use of three diffrent model functions in the Product model page. 
-	public function load_product_beverage()
+	public function load_product_beverage($page_number)
 	{
 		$this->load->model('Product');
+		$prod_cat['page_number'] = $page_number;
 		$prod_cat['count'] = $this->Product->get_number_of_pages(2, 'Beverages');
 		//run the model function from product
 		//set the data to from the model to be transferred to the new page
-		$prod_cat['products'] = $this->Product->get_products_by_category('Beverages');
+		$prod_cat['products'] = $this->Product->get_products_by_category('Beverages', $prod_cat['page_number'], 2);
+		$prod_cat['destination'] = "/Products/load_product_beverage/";
 		$this->load->view('/categories', $prod_cat);
 	}
 

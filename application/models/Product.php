@@ -23,11 +23,12 @@ Class Product extends CI_Model
 			WHERE products.id = '$prod_id'";
 			return $this->db->query($query)->row_array();
 	}
-	public function get_products_by_category($prod_cat)
+	public function get_products_by_category($prod_cat, $page_number, $limiter)
 	{
+		$num_to_offset = ($page_number - 1) * 2;
 		$query = "SELECT products.name as name, category, description, price, id 
 			FROM products 
-			WHERE category = '$prod_cat'";
+			WHERE category = '$prod_cat' LIMIT " . $limiter . " OFFSET " . $num_to_offset;
 			return $this->db->query($query)->result_array();
 	}
 	public function update_product($post)

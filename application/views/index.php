@@ -56,9 +56,9 @@
 			    <img src="/assets/images/landing_page/img5.jpg">
 			    <img src="/assets/images/landing_page/img6.jpg">
 			</div>
-		      	<div class="pictures"><a href="/products/load_product_beverage"><img class="images" src="/assets/images/beverages.jpg"></a></div
-				><div class="pictures"><a href="/products/load_product_food"><img class="images" src="/assets/images/health_bar.jpg"></a></div
-		      	><div class="pictures"><a href="/products/load_product_supplement"><img class="images" src="/assets/images/supplements.jpg"></a></div>
+		      	<div class="pictures"><a href="/products/load_product_beverage/1"><img class="images" src="/assets/images/beverages.jpg"></a></div
+				><div class="pictures"><a href="/products/load_product_food/1"><img class="images" src="/assets/images/health_bar.jpg"></a></div
+		      	><div class="pictures"><a href="/products/load_product_supplement/1"><img class="images" src="/assets/images/supplements.jpg"></a></div>
       		<div>
       			<nav class="navbar navbar-inverse navbar-fixed-bottom">
       				<div class="navbar-bottom">
