@@ -37,4 +37,14 @@ Class Product extends CI_Model
 		$values = array($post['product_name'], $post['product_description'], $post['product_price']);
 		$this->db->query($query, $values);
 	}
+	public function get_all_product_count($prod_cat)
+	{
+
+		return $this->db->query("SELECT COUNT(*) as count FROM products WHERE category = '$prod_cat'")->result_array()[0]['count'];
+	}
+	public function get_number_of_pages($items_per_page, $prod_cat)
+	{
+		$pages = ceil($this->get_all_product_count($prod_cat)/$items_per_page);
+		return $pages;
+	}
 }
