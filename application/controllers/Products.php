@@ -16,6 +16,7 @@ class Products extends CI_Controller
 	public function load_product_beverage()
 	{
 		$this->load->model('Product');
+		$prod_cat['count'] = $this->Product->get_number_of_pages(2, 'Beverages');
 		//run the model function from product
 		//set the data to from the model to be transferred to the new page
 		$prod_cat['products'] = $this->Product->get_products_by_category('Beverages');
@@ -25,6 +26,7 @@ class Products extends CI_Controller
 	public function load_product_food()
 	{
 		$this->load->model('Product');
+		$prod_cat['count'] = $this->Product->get_number_of_pages(2, 'Bars');
 		//run the model function from product
 		//set the data to from the model to be transferred to the new page
 		$prod_cat['products'] = $this->Product->get_products_by_category('Bars');
@@ -34,6 +36,7 @@ class Products extends CI_Controller
 	public function load_product_supplement()
 	{
 		$this->load->model('Product');
+		$prod_cat['count'] = $this->Product->get_number_of_pages(2, 'Supplements');
 			//run the model function from product
 			//set the data to from the model to be transferred to the new page
 		$prod_cat['products'] = $this->Product->get_products_by_category('Supplements');
