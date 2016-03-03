@@ -9,17 +9,24 @@
 		<script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
-				$('li').click(function(){
+				var num = "";
+				$(".product").click(function(){
+					num = $(this).text();
 					$.ajax({
-						url: "<?php echo $destination ?>"
-					}).done(function(){
-				})
-			})
+						method: "GET",
+						//dataType: "HTML",
+						url: "<?php echo $destination ?>" + num,
+					}).done(function(response){
+						$("#pagination").html(response);
+					})
+					return false;
+				});
 
 			});
 		</script>
 	</head>
 	<body>
+	<div id="pagination">
 <?php   if($this->session->userdata('id'))
 		{ ?>
 		<h1>Welcome, <?php echo $this->session->userdata('name');?>!</h1>
@@ -51,7 +58,7 @@
 	      	</nav>
       	</div>
 <?php  	} ?>
-	<div class="container">
+	<div class="container" >
 		<?php foreach($products as $product) { ?>
 		<div class="category_images">
 			<img src="/assets/images/<?php echo $product['name'] ?>.jpg">
@@ -66,17 +73,20 @@
 		<?php } ?>
 	</div>
 	<div class="container">
-		      		<ol style="display: inline-block;">
+		      		<ul style="display: inline-block;">
 		      			<?php for($i = 1; $i <= $count; $i++)
 		      			{ ?>
-		      			<a href="<?php echo $destination . $i ?>"><li></li></a>
+		      			<a href="<?php echo $destination . $i ?>" class="product"><li class="product"><?php echo $i ?></li></a>
 		      			<?php } ?>
-		      		</ol>
+		      		</ul>
 	</div>
 		<nav class="navbar navbar-inverse navbar-fixed-bottom">
 			<div class="navbar-bottom">
 				<a id="about" class="navbar-brand navbar-bottom" href="#">About Us</a>
 				<a class="navbar-brand navbar-bottom" href="/users/load_contact_us">Contact Us</a>
 				<p class="navbar-brand navbar-bottom">&copy; 2016 HealthyNinja</p>
+			</div>
+		</nav>
+	</div>
 	</body>
 </html>
