@@ -90,7 +90,13 @@ class Products extends CI_Controller
 			$sum += $rating['rating'];
 			$count++;
 		}
+		if ($count != 0)
+		{
 		$avg = $sum/$count;
+		}
+		else {
+			$avg = 'There are no ratings for this product';
+		}
 		$product_info['rating'] = $avg;
 		$this->load->view('/product', $product_info);
 	}
