@@ -83,6 +83,15 @@ class Products extends CI_Controller
 		$product_info['product_info'] = $this->Product->get_product($post);
 		$this->load->model('Review');
 		$product_info['reviews'] = $this->Review->get_reviews($post);
+		$sum = 0;
+		$count = 0;
+		foreach($product_info['reviews'] as $rating)
+		{
+			$sum += $rating['rating'];
+			$count++;
+		}
+		$avg = $sum/$count;
+		$product_info['rating'] = $avg;
 		$this->load->view('/product', $product_info);
 	}
 	public function load_success_page($data)
