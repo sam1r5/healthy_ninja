@@ -65,7 +65,7 @@
 				<h1>Description</h1>
 				<h3><?php echo $product_info['description'];?></h3>
 				<h1>Rating</h1>
-				<h3><?php echo $rating;?> / 5</h3>
+				<h3><?php echo $rating;?></h3>
 			</div>
 			<div class="review">
 				<h1>Reviews</h1>
