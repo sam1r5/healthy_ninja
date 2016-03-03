@@ -4,6 +4,8 @@
 		<meta charset="utf-8"/>
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="/assets/stylesheets/index.css">
+		<link rel="stylesheet" type="text/css" href="/assets/stylesheets/bootstrap.min.css">
 		<meta name="description" content="insert description"/>
 		<script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
 		<script type="text/javascript">
@@ -11,6 +13,11 @@
 				// jQuery codes here
 			});
 		</script>
+		<style type="text/css">
+			h2{
+				margin-top: 20%;
+			}
+		</style>
 	</head>
 	<body>
 <?php   if($this->session->userdata('id'))
