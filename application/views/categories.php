@@ -14,7 +14,7 @@
 					num = $(this).text();
 					$.ajax({
 						method: "GET",
-						//dataType: "HTML",
+						dataType: "html",
 						url: "<?php echo $destination ?>" + num,
 					}).done(function(response){
 						$("#pagination").html(response);
@@ -76,7 +76,7 @@
 		      		<ul style="display: inline-block;">
 		      			<?php for($i = 1; $i <= $count; $i++)
 		      			{ ?>
-		      			<a href="<?php echo $destination . $i ?>" class="product"><li class="product"><?php echo $i ?></li></a>
+		      			<a class="page_list" href="<?php echo $destination . $i ?>" class="product"><li class="product"><?php echo $i ?></li></a>
 		      			<?php } ?>
 		      		</ul>
 	</div>

@@ -35,8 +35,11 @@
     position: relative;
    }
 
-   input:hover + i {opacity:1;}
-   input:checked + i{opacity:1;}
+  input:hover + i {opacity:1;}
+  input:checked + i{opacity:1;}
+  }
+  i{
+    width: 20%;
   }
   i ~ i{
     width: 40%;

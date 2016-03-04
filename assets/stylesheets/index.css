@@ -12,6 +12,8 @@
     height: auto;
 	display: inline-block;
 	border: 1px solid black;
+	border-top: 2px solid black;
+	margin-top: 5px;
 }
 
 .images {
@@ -62,7 +64,7 @@ img{
 }
 
 .cycle-slideshow{
-	height: 726px;
+	height: 670px;
 }
 
 .btn-block {
@@ -132,4 +134,15 @@ p{
 
 .write_review{
 	margin-top: 30px;
+}
+
+ul{
+	font-size: 20px;
+	margin-left: 45%;
+}
+
+.page_list{
+	display: inline-block;
+	padding: 0px 5px 0 5px;
+	color: black;
 }
