@@ -89,8 +89,8 @@
 	      			<tr>
  						<td><?php echo $item['name'] ?></td>
  						<td><?php echo $item['quantity'] ?></td>
-						<td><?php echo "$".round($item['price'], 2, PHP_ROUND_HALF_UP) ?></td>
-						<td><?php echo "$".round($item[0]['total'], 2, PHP_ROUND_HALF_UP) ?></td>
+						<td><?php echo "$".number_format(round($item['price'], 2, PHP_ROUND_HALF_UP), 2) ?></td>
+						<td><?php echo "$".number_format(round($item[0]['total'], 2, PHP_ROUND_HALF_UP), 2) ?></td>
  						<td>
 	 						<form action="/<?php echo $pointer ?>/update_quantity" method="post" class="cart">
 	 							<input	type="hidden" name="product_id" value="<?= $item['id'] ?>">			
@@ -120,7 +120,7 @@
  					}
   ?>
       		</tbody>
-      		<td>Total Cost: <?php echo "$".round($cost, 2, PHP_ROUND_HALF_UP) ?></td>
+      		<td>Total Cost: <?php echo "$". $cost ?></td>
       	</table>
       	<div class="container">
       	<form class="form-signin" action="/<?php echo $pointer ?>/payment" method="post">

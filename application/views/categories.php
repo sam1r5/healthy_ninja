@@ -14,10 +14,10 @@
 					num = $(this).text();
 					$.ajax({
 						method: "GET",
-						//dataType: "HTML",
-						url: "<?php echo $destination ?>" + num,
+						dataType: "html",
+						url: "/products/partial/" + num,
 					}).done(function(response){
-						$("#pagination").html(response);
+						$("#window").html(response);
 					})
 					return false;
 				});
@@ -58,7 +58,7 @@
 	      	</nav>
       	</div>
 <?php  	} ?>
-	<div class="container" >
+	<div class="container" id="window">
 		<?php foreach($products as $product) { ?>
 		<div class="category_images">
 			<img src="/assets/images/<?php echo $product['name'] ?>.jpg">
