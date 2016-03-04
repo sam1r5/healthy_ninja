@@ -111,9 +111,9 @@ class Products extends CI_Controller
 		}
 		if ($count != 0)
 		{
-		$avg = $sum/$count . " / 5";
+		$avg = $sum/$count;
 		$product_info['review_content'] = "";
-		$product_info['rating'] = round($avg, 2);
+		$product_info['rating'] = round($avg, 2) . " / 5";
 		}
 		else {
 			$product_info['rating'] = 'There are no ratings for this product';
