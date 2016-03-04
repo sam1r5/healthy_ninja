@@ -69,7 +69,8 @@
 
 
 <?php  	} ?>
-<table class="table table-hover" align-"center">
+<div style="margin-top: 5%;" class="container">
+<table class="table" align-"center">
       		<thead>
       			<tr>
       				<td>Product Name</td>
@@ -122,6 +123,7 @@
       		</tbody>
       		<td>Total Cost: <?php echo "$". $cost ?></td>
       	</table>
+      </div>
       	<div class="container">
       	<form class="form-signin" action="/<?php echo $pointer ?>/payment" method="post">
       		<h2 class="form-signin-heading">Shipping Address</h2>
