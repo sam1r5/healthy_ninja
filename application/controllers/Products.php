@@ -22,6 +22,7 @@ class Products extends CI_Controller
 		//set the data to from the model to be transferred to the new page
 		$prod_cat['products'] = $this->Product->get_products_by_category('Beverages', $prod_cat['page_number'], 2);
 		$prod_cat['destination'] = "/Products/load_product_beverage/";
+		$this->session->set_userdata('category', 'Beverages');
 		$this->load->view('/categories', $prod_cat);
 	}
 
@@ -34,6 +35,7 @@ class Products extends CI_Controller
 		//set the data to from the model to be transferred to the new page
 		$prod_cat['products'] = $this->Product->get_products_by_category('Bars', $prod_cat['page_number'], 2);
 		$prod_cat['destination'] = "/Products/load_product_food/";
+		$this->session->set_userdata('category', 'Bars');
 		$this->load->view('/categories', $prod_cat);
 	}
 
@@ -46,6 +48,7 @@ class Products extends CI_Controller
 			//set the data to from the model to be transferred to the new page
 		$prod_cat['products'] = $this->Product->get_products_by_category('Supplements', $prod_cat['page_number'], 2);
 		$prod_cat['destination'] = "/Products/load_product_supplement/";
+		$this->session->set_userdata('category', 'Supplements');
 		$this->load->view('/categories', $prod_cat);
 
 	}
@@ -171,6 +174,17 @@ class Products extends CI_Controller
 			$data = array('upload_data' => $this->upload->data());
 			redirect('/Users/load_admin_dashboard');
 		}
+	}
+	public function partial($page_number)
+	{
+		$category = $this->session->userdata('category');
+		$this->load->model('Product');
+		$prod_cat['page_number'] = $page_number;
+		$prod_cat['count'] = $this->Product->get_number_of_pages(2, $category);
+		//run the model function from product
+		//set the data to from the model to be transferred to the new page
+		$prod_cat['products'] = $this->Product->get_products_by_category($category, $prod_cat['page_number'], 2);
+		$this->load->view('/partial', $prod_cat);
 	}
 } 
 ?>

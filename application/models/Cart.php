@@ -68,7 +68,8 @@ class Cart extends CI_Model
 		{
 			$cost += $items[$i][0]['total'];
 		}
-		return round($cost, 2, PHP_ROUND_HALF_UP);
+		$cost = round($cost, 2, PHP_ROUND_HALF_UP);
+		return number_format($cost, 2);
 	}
 
 	public function delete_cart()
